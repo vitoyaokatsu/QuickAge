@@ -15,7 +15,10 @@ class ViewController: UIViewController{
     var viewHeight: CGFloat = 0
         
     let dateFontSize: CGFloat = 48
-    let whatDayFont: CGFloat = 100
+    let whatDayFont: CGFloat = 24
+    let nengoFont:CGFloat = 16
+    let ageFont:CGFloat = 36
+    let ageFontForDays: CGFloat = 16
     
     let calendar = Calendar.current
     
@@ -25,23 +28,21 @@ class ViewController: UIViewController{
     // IF components layout---------------------------
     lazy var yearLabel: UILabel = {
         let label = UILabel()
+        
         if DeviceType.iPhone8 {
-            label.frame = CGRect(x:viewWidth * 0.0400, y:viewHeight * 0.1038, width:120, height:50)//0.531
+            label.frame = CGRect(x:viewWidth * 0.0400, y:viewHeight * 0.2038, width:120, height:50)//0.531
         }else if DeviceType.iPhone8Plus {
-            label.frame = CGRect(x:viewWidth * 0.0400, y:viewHeight * 0.0938, width:120, height:50)
+            label.frame = CGRect(x:viewWidth * 0.0400, y:viewHeight * 0.1938, width:120, height:50)
         }else{
-            label.frame = CGRect(x:viewWidth * 0.0400, y:viewHeight * 0.1138, width:120, height:50)
+            label.frame = CGRect(x:viewWidth * 0.0400, y:viewHeight * 0.2138, width:120, height:50)
         }
         
-        // fit to current label size depends on length of textx
-        //label.sizeToFit()
-        
         label.font = UIFont.systemFont(ofSize: dateFontSize)
-        label.textAlignment = NSTextAlignment.right
+        label.textAlignment = NSTextAlignment.left
         label.textColor = .white
         label.text = getDateYearText(isThisYear: true)
+        label.sizeToFit()
         label.backgroundColor = .clear
-        label.tag = 91 //???
         //20201209
         let yearLabelTapGesture:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedLabel(_:)))
         label.isUserInteractionEnabled = true
@@ -104,17 +105,147 @@ class ViewController: UIViewController{
     
     lazy var whatDayLabel: UILabel = {
         let label = UILabel()
-//        if DeviceType.iPhone8{
-//            label.frame = CGRect(x:viewWidth * 0.0531, y:viewHeight * 0.16, width:200, height:100)
-//        }else if DeviceType.iPhone8Plus{
-//            label.frame = CGRect(x:viewWidth * 0.0531, y:viewHeight * 0.15, width:200, height:100)
-//        }else{
-//            label.frame = CGRect(x:viewWidth * 0.0531, y:viewHeight * 0.18, width:200, height:100)
-//        }
-        label.font = UIFont.systemFont(ofSize: dateFontSize)
+        label.font = UIFont.systemFont(ofSize: whatDayFont)
         label.textAlignment = NSTextAlignment.left
         label.textColor = UIColor.white
         label.text = getDateEText(isToday: true)
+        label.sizeToFit()
+        return label
+    }()
+    
+    
+    lazy var nengoLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: nengoFont)
+        label.textAlignment = NSTextAlignment.left
+        label.textColor = UIColor.white
+        label.text = getNengo(searchDate: searchDate)
+        label.sizeToFit()
+        label.backgroundColor = .clear
+        return label
+    }()
+    
+    
+    
+    //Laabel-2
+    lazy var yearLabel2: UILabel = {
+        let label = UILabel()
+        
+        if DeviceType.iPhone8 {
+            label.frame = CGRect(x:viewWidth * 0.0400, y:viewHeight * 0.1038, width:120, height:50)//0.531
+        }else if DeviceType.iPhone8Plus {
+            label.frame = CGRect(x:viewWidth * 0.0400, y:viewHeight * 0.0938, width:120, height:50)
+        }else{
+            label.frame = CGRect(x:viewWidth * 0.0400, y:viewHeight * 0.1138, width:120, height:50)
+        }
+        
+        label.backgroundColor = .clear
+        label.font = UIFont.systemFont(ofSize: dateFontSize)
+        label.textAlignment = NSTextAlignment.left
+        label.textColor = .white
+        label.text = getDateYearText(isThisYear: true)
+        label.sizeToFit()
+        label.backgroundColor = .clear
+        
+        let yearLabelTapGesture:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedLabel(_:)))
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(yearLabelTapGesture)
+        return label
+    }()
+
+
+    lazy var dot12: UILabel = {
+        let label = UILabel()
+        label.frame = CGRect(x:viewWidth * 0.320, y:viewHeight * 0.1138, width:10, height:50)
+        label.font = UIFont.systemFont(ofSize: dateFontSize)
+        label.textAlignment = .left
+        label.textColor = .white
+        label.text = "."
+        label.backgroundColor = .clear
+        return label
+    }()
+
+    lazy var monthLabel2: UILabel = {
+        let label = UILabel()
+        label.frame = CGRect(x:viewWidth * 0.325, y:viewHeight * 0.1138, width:75, height:50)
+        label.font = UIFont.systemFont(ofSize: dateFontSize)
+        label.textAlignment = NSTextAlignment.right
+        label.textColor = UIColor.white
+        label.text = getDateMonthText(isThisMonth: true)
+        label.backgroundColor = .clear
+        label.tag = 92
+        let monthLabelTapGesture:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedLabel(_:)))
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(monthLabelTapGesture)
+        return label
+    }()
+
+    lazy var dot22: UILabel = {
+        let label = UILabel()
+        label.frame = CGRect(x:viewWidth * 0.50, y:viewHeight * 0.1138, width:10, height:50)
+        label.font = UIFont.systemFont(ofSize: dateFontSize)
+        label.textAlignment = .left
+        label.textColor = .white
+        label.text = "."
+        label.backgroundColor = .clear
+        return label
+    }()
+
+    lazy var dayLabel2: UILabel = {
+        let label = UILabel()
+        label.frame = CGRect(x:viewWidth * 0.53, y:viewHeight * 0.1138, width:60, height:50)
+        label.font = UIFont.systemFont(ofSize: dateFontSize)
+        label.textAlignment = NSTextAlignment.right
+        label.textColor = UIColor.white
+        label.text = getDateDayText(isToday: true)
+        label.backgroundColor = .clear
+        label.tag = 93
+        let dayLabelTapGesture:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedLabel(_:)))
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(dayLabelTapGesture)
+        return label
+    }()
+
+    lazy var whatDayLabel2: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: whatDayFont)
+        label.textAlignment = NSTextAlignment.left
+        label.textColor = UIColor.white
+        label.text = getDateEText(isToday: true)
+        return label
+    }()
+    
+    lazy var nengoLabel2: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: nengoFont)
+        label.textAlignment = NSTextAlignment.left
+        label.textColor = UIColor.white
+        label.text = getNengo(searchDate: searchDate)
+        label.sizeToFit()
+        label.backgroundColor = .clear
+        return label
+    }()
+    
+    
+    lazy var ageLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: dateFontSize)
+        label.textAlignment = NSTextAlignment.left
+        label.textColor = UIColor.white
+        label.text = ""
+        label.sizeToFit()
+        label.backgroundColor = .clear
+        return label
+    }()
+    
+    lazy var ageLabelForDay: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: ageFontForDays)
+        label.textAlignment = NSTextAlignment.left
+        label.textColor = UIColor.white
+        label.text = ""
+        label.sizeToFit()
+        label.backgroundColor = .clear
         return label
     }()
     
@@ -311,23 +442,24 @@ class ViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // 初期画面の画面レイアウト設定
-        initViewSetting()
-        // default date is today
+        
+//        setWhatDay()
+        
         let dt = Date()
         searchDay = dt.convertDateToStr(with: "yyyy/MM/dd")
         searchDate = dt
+        // 初期画面の画面レイアウト設定
+        initViewSetting()
+        // default date is today
+        
         dayNumber = Int(getDayText(serchDate: dt))!
         searchMonth = getDateMonthText(isThisMonth: true)
         searchYear = getDateYearText(isThisYear: true)
         yearNumber = Int(searchYear)!
         monthNumber = Int(searchMonth)!
+
         print("searchDate: \(searchDate)")
     }
-    
-
-    
-    
     
     
     
@@ -345,7 +477,7 @@ class ViewController: UIViewController{
         
         self.viewHeight = self.view.frame.height
         self.viewWidth = self.view.frame.width
-        view.backgroundColor = UIColor.lavender
+        view.backgroundColor = UIColor.carnation
         
         self.navigationController?.navigationBar.isTranslucent = true
         
@@ -367,17 +499,42 @@ class ViewController: UIViewController{
         view.addSubview(dayLabel)
         view.addSubview(dot1)
         view.addSubview(dot2)
+        view.addSubview(yearLabel2)
+        view.addSubview(monthLabel2)
+        view.addSubview(dayLabel2)
+        view.addSubview(dot12)
+        view.addSubview(dot22)
+        view.addSubview(whatDayLabel2)
+        view.addSubview(nengoLabel)
+        view.addSubview(nengoLabel2)
+        view.addSubview(ageLabel)
+        view.addSubview(ageLabelForDay)
+        
+        labelLayout1()
+        labelLayout2()
+        
+        
+        let setBasicDayButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(setBasicDay))
+        self.navigationItem.rightBarButtonItems = [setBasicDayButton]
+    }
+    
+    
+    func labelLayout1(){
         
         dot1.translatesAutoresizingMaskIntoConstraints = false
         monthLabel.translatesAutoresizingMaskIntoConstraints = false
         dot2.translatesAutoresizingMaskIntoConstraints = false
         dayLabel.translatesAutoresizingMaskIntoConstraints = false
         whatDayLabel.translatesAutoresizingMaskIntoConstraints = false
+        nengoLabel.translatesAutoresizingMaskIntoConstraints = false
+        ageLabel.translatesAutoresizingMaskIntoConstraints = false
+        ageLabelForDay.translatesAutoresizingMaskIntoConstraints = false
+        
         dot1.heightAnchor.constraint(equalToConstant: 50).isActive = true
         monthLabel.heightAnchor.constraint(equalToConstant:50).isActive  = true
         dot2.heightAnchor.constraint(equalToConstant: 50).isActive = true
         dayLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        whatDayLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
         dot1.bottomAnchor.constraint(equalTo: yearLabel.bottomAnchor).isActive = true
         dot1.leadingAnchor.constraint(equalTo: yearLabel.trailingAnchor,constant: 0).isActive = true
         monthLabel.bottomAnchor.constraint(equalTo: dot1.bottomAnchor).isActive = true
@@ -386,15 +543,46 @@ class ViewController: UIViewController{
         dot2.leadingAnchor.constraint(equalTo: monthLabel.trailingAnchor,constant: 0).isActive = true
         dayLabel.bottomAnchor.constraint(equalTo: dot2.bottomAnchor).isActive = true
         dayLabel.leadingAnchor.constraint(equalTo: dot2.trailingAnchor,constant: 5).isActive = true
-        whatDayLabel.bottomAnchor.constraint(equalTo: dayLabel.bottomAnchor).isActive = true
-        whatDayLabel.leadingAnchor.constraint(equalTo: dayLabel.trailingAnchor,constant: 24).isActive = true
-        
-        
-        let setBasicDayButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(setBasicDay))
-        self.navigationItem.rightBarButtonItems = [setBasicDayButton]
+        whatDayLabel.bottomAnchor.constraint(equalTo: dayLabel.bottomAnchor,constant: -2).isActive = true
+        whatDayLabel.leadingAnchor.constraint(equalTo: dayLabel.trailingAnchor,constant: 8).isActive = true
+        nengoLabel.topAnchor.constraint(equalTo: yearLabel.bottomAnchor,constant: -8).isActive = true
+        nengoLabel.leadingAnchor.constraint(equalTo: yearLabel.leadingAnchor,constant: 12).isActive = true
+        ageLabel.leadingAnchor.constraint(equalTo: yearLabel.leadingAnchor,constant: 8).isActive = true
+        ageLabel.topAnchor.constraint(equalTo: nengoLabel.bottomAnchor).isActive = true
+        ageLabelForDay.leadingAnchor.constraint(equalTo: ageLabel.leadingAnchor,constant: 12).isActive = true
+        ageLabelForDay.topAnchor.constraint(equalTo: ageLabel.bottomAnchor,constant: -8).isActive = true
     }
     
-    @objc func setBasicDay(){//もどす
+    func labelLayout2(){
+        
+        dot12.translatesAutoresizingMaskIntoConstraints = false
+        monthLabel2.translatesAutoresizingMaskIntoConstraints = false
+        dot22.translatesAutoresizingMaskIntoConstraints = false
+        dayLabel2.translatesAutoresizingMaskIntoConstraints = false
+        whatDayLabel2.translatesAutoresizingMaskIntoConstraints = false
+        nengoLabel2.translatesAutoresizingMaskIntoConstraints = false
+        dot12.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        monthLabel2.heightAnchor.constraint(equalToConstant:50).isActive  = true
+        dot22.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        dayLabel2.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        dot12.bottomAnchor.constraint(equalTo: yearLabel2.bottomAnchor).isActive = true
+        dot12.leadingAnchor.constraint(equalTo: yearLabel2.trailingAnchor,constant: 0).isActive = true
+        monthLabel2.bottomAnchor.constraint(equalTo: dot12.bottomAnchor).isActive = true
+        monthLabel2.leadingAnchor.constraint(equalTo: dot12.trailingAnchor,constant: 5).isActive = true
+        dot22.bottomAnchor.constraint(equalTo: monthLabel2.bottomAnchor).isActive = true
+        dot22.leadingAnchor.constraint(equalTo: monthLabel2.trailingAnchor,constant: 0).isActive = true
+        dayLabel2.bottomAnchor.constraint(equalTo: dot22.bottomAnchor).isActive = true
+        dayLabel2.leadingAnchor.constraint(equalTo: dot22.trailingAnchor,constant: 5).isActive = true
+        whatDayLabel2.bottomAnchor.constraint(equalTo: dayLabel2.bottomAnchor, constant: -2).isActive = true
+        whatDayLabel2.leadingAnchor.constraint(equalTo: dayLabel2.trailingAnchor,constant: 8).isActive = true
+        nengoLabel2.topAnchor.constraint(equalTo: yearLabel2.bottomAnchor,constant: -8).isActive = true
+        nengoLabel2.leadingAnchor.constraint(equalTo: yearLabel2.leadingAnchor,constant: 12).isActive = true
+        
+    }
+    
+    
+    @objc func setBasicDay(){
 
     }
     

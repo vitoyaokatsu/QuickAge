@@ -18,7 +18,8 @@ extension UIColor {
     static let tiffanyBlue3 = UIColor(red: 45/255, green: 204/255, blue: 211/255, alpha: 1)
     static let tiffanyBlue4 = UIColor(red: 57/255, green: 205/255, blue: 231/255, alpha: 1)
     static let lavender = UIColor(red: 217/255, green: 131/255, blue: 255/255, alpha: 1)
-    
+    static let carnation = UIColor(red: 255/255, green: 138/255, blue: 216/255, alpha: 1)
+    static let strawbelly = UIColor(red: 255/255, green: 47/255, blue: 146/255, alpha: 1)
     
     static let onePlaceButtonColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
     static let ymdButtonColor = UIColor(red: 102/255, green: 102/255, blue: 102/255, alpha: 1)

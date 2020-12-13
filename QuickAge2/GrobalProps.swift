@@ -21,11 +21,6 @@ var monthOnesNumber: Int = 0
 var monthTenthNumber: Int = 0
 var monthNumber: Int = 0
 
-// 2020 08 05 @Yugo Kawarada
-// カラーモードをグローバルで持たせどこのクラスからもアクセスできるようにする
-var gl_isPinkMode: Bool = false //not in use
-
-var NextButtonTapped: Bool = false // not in use
 
 var setYearButtonTapped: Bool = false
 var setMonthButtonTapped: Bool = false

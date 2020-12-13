@@ -21,6 +21,10 @@
 		2D14A58825750ABC00D19B2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D14A58625750ABC00D19B2A /* LaunchScreen.storyboard */; };
 		2D14A59325750ABD00D19B2A /* QuickAge2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D14A59225750ABD00D19B2A /* QuickAge2Tests.swift */; };
 		2D14A59E25750ABD00D19B2A /* QuickAge2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D14A59D25750ABD00D19B2A /* QuickAge2UITests.swift */; };
+		2D7B22882585E34D00D05AC7 /* GrobalProps2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7B22872585E34D00D05AC7 /* GrobalProps2.swift */; };
+		2D7B228D2585E65100D05AC7 /* MainVCActions2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7B228C2585E65100D05AC7 /* MainVCActions2.swift */; };
+		2D7B22922586113500D05AC7 /* CalDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7B22912586113500D05AC7 /* CalDate.swift */; };
+		2DAE165525836A0800451F63 /* Button2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAE165425836A0800451F63 /* Button2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +65,10 @@
 		2D14A59925750ABD00D19B2A /* QuickAge2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickAge2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D14A59D25750ABD00D19B2A /* QuickAge2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickAge2UITests.swift; sourceTree = "<group>"; };
 		2D14A59F25750ABD00D19B2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2D7B22872585E34D00D05AC7 /* GrobalProps2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrobalProps2.swift; sourceTree = "<group>"; };
+		2D7B228C2585E65100D05AC7 /* MainVCActions2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVCActions2.swift; sourceTree = "<group>"; };
+		2D7B22912586113500D05AC7 /* CalDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalDate.swift; sourceTree = "<group>"; };
+		2DAE165425836A0800451F63 /* Button2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,13 +133,17 @@
 				2D14A57B25750AB300D19B2A /* AppDelegate.swift */,
 				2D14A57D25750AB300D19B2A /* SceneDelegate.swift */,
 				2D14A57F25750AB300D19B2A /* ViewController.swift */,
+				2D7B22912586113500D05AC7 /* CalDate.swift */,
 				2D043CB8258350420018050E /* MainVCActions.swift */,
+				2D7B228C2585E65100D05AC7 /* MainVCActions2.swift */,
 				2D043CB725834FF40018050E /* Base */,
 				2D043CB225834FBD0018050E /* GrobalProps.swift */,
+				2D7B22872585E34D00D05AC7 /* GrobalProps2.swift */,
 				2D14A58125750AB300D19B2A /* Main.storyboard */,
 				2D14A58425750ABC00D19B2A /* Assets.xcassets */,
 				2D14A58625750ABC00D19B2A /* LaunchScreen.storyboard */,
 				2D14A58925750ABC00D19B2A /* Info.plist */,
+				2DAE165425836A0800451F63 /* Button2.swift */,
 			);
 			path = QuickAge2;
 			sourceTree = "<group>";
@@ -284,14 +296,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DAE165525836A0800451F63 /* Button2.swift in Sources */,
 				2D043CC82583517B0018050E /* UserDefaultSetting.swift in Sources */,
 				2D14A58025750AB300D19B2A /* ViewController.swift in Sources */,
+				2D7B22882585E34D00D05AC7 /* GrobalProps2.swift in Sources */,
 				2D14A57C25750AB300D19B2A /* AppDelegate.swift in Sources */,
 				2D043CBE258350B00018050E /* Color.swift in Sources */,
 				2D043CC3258351330018050E /* Date.swift in Sources */,
 				2D043CB325834FBD0018050E /* GrobalProps.swift in Sources */,
+				2D7B228D2585E65100D05AC7 /* MainVCActions2.swift in Sources */,
 				2D14A57E25750AB300D19B2A /* SceneDelegate.swift in Sources */,
 				2D043CAE25834F970018050E /* Device.swift in Sources */,
+				2D7B22922586113500D05AC7 /* CalDate.swift in Sources */,
 				2D043CB9258350420018050E /* MainVCActions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -570,7 +570,10 @@ extension ViewController {
         whatDayLabel.text = getEText(searchDate: searchDate)
         // get event data
         dayLabel.textColor = .white
-        
+        nengoLabel.text = getNengo(searchDate: searchDate)
+//        getAge(firstDate: searchDate)
+        ageLabel.text = getAge(firstDate: searchDate)
+        ageLabelForDay.text = getAgeForDay (firstDate: searchDate)
         //reset date tap count
         willTapFirstButton = true
         willTapFirstButtonForMonth = true
