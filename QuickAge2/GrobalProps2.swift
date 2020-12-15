@@ -35,6 +35,8 @@ var setdayLabel2Tapped = false
 var searchDay2: String = "dayString"
 var searchYear2: String = "yearString"
 var searchMonth2: String = "monthString"
+var baseDay: String = "baseDayString"
+var baseDate: Date = Date()
 
 var age: Int = 0
 
@@ -54,6 +56,16 @@ func getNengo(searchDate: Date)->(String){
     var nengoStr = nengo.string(from: searchDate)
     print("nengoStr \(nengoStr)")
     return nengoStr
-    
 }
 
+
+
+func getBaseDayStringFromBaseDay(searchDate: Date)->(String){
+    var baseDayStr = baseDay
+    let baseYear = getYearText(serchDate: searchDate)
+    let baseMonth = getMonthText(serchDate: searchDate)
+    let baseDay = getDayText(serchDate: searchDate)
+    baseDayStr = baseYear + "." + baseMonth + "." + baseDay
+    print("baseDayStr \(baseDayStr)")
+    return baseDayStr
+}

@@ -51,7 +51,7 @@ extension ViewController {
         
         let calendar = Calendar.current
         let dateFrom = firstDate
-        let dateTo = Date()//変更
+        let dateTo = secondDate!//変更
         var comps: DateComponents
         
         comps = calendar.dateComponents([.year, .month, .day], from: dateFrom, to: dateTo)
@@ -68,7 +68,7 @@ extension ViewController {
         
         let calendar = Calendar.current
         let dateFrom = firstDate
-        let dateTo = Date()//変更
+        let dateTo = secondDate!//変更
         var comps: DateComponents
         
         comps = calendar.dateComponents([.day], from: dateFrom, to: dateTo)

@@ -68,7 +68,7 @@ extension ViewController {
         searchMonth = String(monthNumber)
         monthLabel.text = searchMonth
         dayLabel.text = String(dayNumber)
-        searchEvent()
+        calculateAge()
         yearLabel.textColor = .gray
     }
     
@@ -83,7 +83,7 @@ extension ViewController {
         searchYear = String(yearNumber)
         yearLabel.text = searchYear
         dayLabel.text = String(dayNumber)
-        searchEvent()
+        calculateAge()
         monthLabel.textColor = .gray
     }
     
@@ -99,7 +99,7 @@ extension ViewController {
         yearLabel.text = searchYear
         searchMonth = String(monthNumber)
         monthLabel.text = searchMonth
-        searchEvent()
+        calculateAge()
         dayLabel.textColor = .gray
     }
     
@@ -112,7 +112,7 @@ extension ViewController {
         if setYearButtonTapped{
             willTapForYearCount += 1
             if willTapForYearCount == 5 {
-                willTapForYearCount = 1
+                willTapForYearCount = 0
                 yearLabel.text = "----"
                 yearLabel.textColor = .gray
             }
@@ -166,11 +166,17 @@ extension ViewController {
                 searchYear = String(yearNumber)
                 print("tapcount=4: \(searchYear)")
             default:
-                yearNumber = Int(getDateYearText(isThisYear: true))!
-                willTapForYearCount = 0
+                break
             }
+        if willTapForYearCount == 5 {
+            yearLabel.text = "----"
+            yearLabel.textColor = .gray
+            yearNumber = Int(getDateYearText(isThisYear: true))!
+            searchYear = String(yearNumber)
+            willTapForYearCount = 0
+        }else {
         yearLabel.text = searchYear
-
+        }
     }
 
     
@@ -290,72 +296,7 @@ extension ViewController {
     
     //------------------
     
-    //it's gonna be editted on 2020/11/29
-    func seAlertAndSet(seDayTitle: String, selectedSENo: Int) {
-        let alert: UIAlertController = UIAlertController(title: seDayTitle, message: searchDay, preferredStyle:  UIAlertController.Style.alert)
-
-        let defaultAction: UIAlertAction = UIAlertAction(title: "Save", style: UIAlertAction.Style.default, handler:{
-            
-            (action: UIAlertAction!) -> Void in
-            print("Saved")
-            setSEOKForAlert = true
-            switch (selectedSENo){
-            case 1:
-                let buttonTxt = getYearText(serchDate: searchDate) + "\n" + getMonthText(serchDate: searchDate) + "/" + getDayText(serchDate: searchDate)
-                seDay1 = searchDay
-                // save userdefault
-                UserDefaultSetting.saveData(key: UserDefaultSetting.SEKeys.SE1.rawValue, object: seDay1)
-                
-                self.se1Button.setTitle(buttonTxt, for: .normal)
-                self.se1Button.backgroundColor = .seButtonColor
-                self.toggleAndColorChange()
-                print("setSE1ButtonTapped in SP1-2:\(setSEButtonTapped)")
-                print("seDay1 in SP1-2:\(seDay1)")
-                setSEOKForAlert = false
-            case 2:
-                let buttonTxt = getYearText(serchDate: searchDate) + "\n" + getMonthText(serchDate: searchDate) + "/" + getDayText(serchDate: searchDate)
-                seDay2 = searchDay
-                // save userdefault
-                UserDefaultSetting.saveData(key: UserDefaultSetting.SEKeys.SE2.rawValue, object: seDay2)
-                self.se2Button.setTitle(buttonTxt, for: .normal)
-                self.se2Button.backgroundColor = .seButtonColor
-                self.toggleAndColorChange()
-                print("setSE2ButtonTapped infunc SP2-2:\(setSEButtonTapped)")
-                print("seDay2 infunc SP2-2:\(seDay2)")
-                setSEButtonTapped = false
-            case 3:
-                let buttonTxt = getYearText(serchDate: searchDate) + "\n" + getMonthText(serchDate: searchDate) + "/" + getDayText(serchDate: searchDate)
-                seDay3 = searchDay
-                // save userdefault
-                UserDefaultSetting.saveData(key: UserDefaultSetting.SEKeys.SE3.rawValue, object: seDay3)
-                
-                self.se3Button.setTitle(buttonTxt, for: .normal)
-                self.se3Button.backgroundColor = .seButtonColor
-                self.toggleAndColorChange()
-            print("setSE3ButtonTapped infunc SP3-2:\(setSEButtonTapped)")
-            print("seDay3 infunc SP3-2:\(seDay3)")
-                setSEButtonTapped = false
-            default:
-                print("misson complete")
-            }
-            
-        })
-        
-        
-        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler:{
-            (action: UIAlertAction!) -> Void in
-            print("Canceled")
-            setSEButtonTapped = false
-            self.buttonEnable()
-            self.toggleAndColorChange()
-        })
-
-        
-        alert.addAction(cancelAction)
-        alert.addAction(defaultAction)
-        
-        present(alert, animated: true, completion: nil)
-    }
+    
     
     func buttonEnable(){
         if setSEButtonTapped == false {
@@ -403,7 +344,7 @@ extension ViewController {
         switch (sender.tag) {
         case 11:// se1Button
             setDayNumber()
-            searchEvent()
+            calculateAge()
             print("setSE1ButtonTapped in case:\(setSEButtonTapped)")
             print("seDay1 in case:\(seDay1)")
             if setSEButtonTapped == false {
@@ -423,11 +364,11 @@ extension ViewController {
                 //any alart
                 setSEButtonTapped = false
                 buttonEnable()
-                seAlertAndSet(seDayTitle: seDay1ForAlert, selectedSENo: 1)
+                
             }
         case 12:
             setDayNumber()
-            searchEvent()
+            calculateAge()
             print("setSE2ButtonTapped in case:\(setSEButtonTapped)")
             print("seDay2 in case:\(seDay2)")
             if setSEButtonTapped == false {
@@ -448,11 +389,11 @@ extension ViewController {
                 //any alart
                 setSEButtonTapped = false
                 buttonEnable()
-                seAlertAndSet(seDayTitle: seDay2ForAlert, selectedSENo: 2)
+//                seAlertAndSet(seDayTitle: seDay2ForAlert, selectedSENo: 2)
             }
         case 13:
             setDayNumber()
-            searchEvent()
+            calculateAge()
             print("setSE3ButtonTapped in case:\(setSEButtonTapped)")
             print("seDay3 in case:\(seDay3)")
             if setSEButtonTapped == false {
@@ -471,7 +412,7 @@ extension ViewController {
                 //any alart
                 setSEButtonTapped = false
                 buttonEnable()
-                seAlertAndSet(seDayTitle: seDay3ForAlert, selectedSENo: 3)
+//                seAlertAndSet(seDayTitle: seDay3ForAlert, selectedSENo: 3)
             }
         case 14:// setSEButton
             if setSEButtonTapped == false {
@@ -482,7 +423,7 @@ extension ViewController {
             buttonEnable()
             }else {
                 setDayNumber()
-                searchEvent()
+                calculateAge()
                 toggleAndColorChange()
                 buttonEnable()
             }
@@ -544,7 +485,7 @@ extension ViewController {
     }
     
     
-    private func searchEvent(){
+    private func calculateAge(){
         
         setDayNumber()
         setMonthNumber()
@@ -564,16 +505,21 @@ extension ViewController {
         
         searchDay = searchYear + "/" + searchMonth + "/" + String(dayNumber)
         searchDate = dateFromString(string: searchDay, format: "yyyy/MM/dd")
+        //kokowohennkou
+//        baseDay = "1967/03/09"
+//        baseDate = dateFromString(string: baseDay, format: "yyyy/MM/dd")
         
-        print("検索用文字列: \(searchDay)")
+        print("検索用文字列searchDate: \(searchDate)")
+        print("検索用文字列baseDate: \(baseDate)")
+//        baseDayLabel.text = getBaseDayStringFromBaseDay(searchDate: baseDate)
         
         whatDayLabel.text = getEText(searchDate: searchDate)
         // get event data
         dayLabel.textColor = .white
         nengoLabel.text = getNengo(searchDate: searchDate)
 //        getAge(firstDate: searchDate)
-        ageLabel.text = getAge(firstDate: searchDate)
-        ageLabelForDay.text = getAgeForDay (firstDate: searchDate)
+        ageLabel.text = getAge(firstDate: searchDate, secondDate: baseDate)
+        ageLabelForDay.text = getAgeForDay (firstDate: searchDate, secondDate: baseDate)
         //reset date tap count
         willTapFirstButton = true
         willTapFirstButtonForMonth = true
@@ -658,7 +604,7 @@ extension ViewController {
     //&&& SearchButton tapped
     @objc func pushSearchButton(_ sender: UIButton) {
                 
-        searchEvent()
+        calculateAge()
 //        self.events = getEvents(on: dt.removeTimes())
 //        tableView.reloadData()
 //        reloadInputViews()
