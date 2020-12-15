@@ -30,7 +30,7 @@ var serchMonthInt: Int = Int(searchMonth) ?? 0
 
 // --------------------
 
-var setSEButtonTapped: Bool = false
+var taishoButtonTapped: Bool = false
 
 var tapCount: Int = 0
 

@@ -299,7 +299,7 @@ extension ViewController {
     
     
     func buttonEnable(){
-        if setSEButtonTapped == false {
+        if taishoButtonTapped == false {
             ones1Button.isEnabled = true
             ones2Button.isEnabled = true
             ones3Button.isEnabled = true
@@ -340,14 +340,14 @@ extension ViewController {
     
     
     // SD 1) case Switch
-    @objc func setSEDay(_ sender:UIButton){
+    @objc func pushNengoButton(_ sender:UIButton){
         switch (sender.tag) {
-        case 11:// se1Button
+        case 11:// taishoButton
             setDayNumber()
             calculateAge()
-            print("setSE1ButtonTapped in case:\(setSEButtonTapped)")
+            print("setSE1ButtonTapped in case:\(taishoButtonTapped)")
             print("seDay1 in case:\(seDay1)")
-            if setSEButtonTapped == false {
+            if taishoButtonTapped == false {
                 if seDay1 == "not set"{
 //                    searchEvent()
                 }else { // in this case, Just get Event from seDay
@@ -359,19 +359,19 @@ extension ViewController {
                 }
             }else { //SetseButton == true, Set seDay with alert
 //                setSP1()
-                print("setSE1ButtonTapped infunc SP1-1:\(setSEButtonTapped)")
+                print("setSE1ButtonTapped infunc SP1-1:\(taishoButtonTapped)")
                 print("seDay1 infunc SP1-1:\(seDay1)")
                 //any alart
-                setSEButtonTapped = false
+                taishoButtonTapped = false
                 buttonEnable()
                 
             }
         case 12:
             setDayNumber()
             calculateAge()
-            print("setSE2ButtonTapped in case:\(setSEButtonTapped)")
+            print("setSE2ButtonTapped in case:\(taishoButtonTapped)")
             print("seDay2 in case:\(seDay2)")
-            if setSEButtonTapped == false {
+            if taishoButtonTapped == false {
                 if seDay2 == "not set"{
 //                    searchEvent()
                 }else {
@@ -383,20 +383,20 @@ extension ViewController {
                     displayLeftDays(seDayTitle: leftDaysString , leftDays: seDay2ForAlert)
                 }
             }else {
-                print("setSE2ButtonTapped infunc SP2-1:\(setSEButtonTapped)")
+                print("setSE2ButtonTapped infunc SP2-1:\(taishoButtonTapped)")
                 print("seDay2 infunc SP2-1:\(seDay2)")
                 
                 //any alart
-                setSEButtonTapped = false
+                taishoButtonTapped = false
                 buttonEnable()
 //                seAlertAndSet(seDayTitle: seDay2ForAlert, selectedSENo: 2)
             }
         case 13:
             setDayNumber()
             calculateAge()
-            print("setSE3ButtonTapped in case:\(setSEButtonTapped)")
+            print("setSE3ButtonTapped in case:\(taishoButtonTapped)")
             print("seDay3 in case:\(seDay3)")
-            if setSEButtonTapped == false {
+            if taishoButtonTapped == false {
                 if seDay3 == "not set"{
 //                    searchEvent()
                 }else {
@@ -407,16 +407,16 @@ extension ViewController {
                     displayLeftDays(seDayTitle: leftDaysString , leftDays: seDay3ForAlert)
                 }
             }else {
-                print("setSE1ButtonTapped infunc SP3-1:\(setSEButtonTapped)")
+                print("setSE1ButtonTapped infunc SP3-1:\(taishoButtonTapped)")
                 print("seDay3 infunc SP3-1:\(seDay3)")
                 //any alart
-                setSEButtonTapped = false
+                taishoButtonTapped = false
                 buttonEnable()
 //                seAlertAndSet(seDayTitle: seDay3ForAlert, selectedSENo: 3)
             }
         case 14:// setSEButton
-            if setSEButtonTapped == false {
-            setSEButtonTapped = true//もどす
+            if taishoButtonTapped == false {
+            taishoButtonTapped = true//もどす
             se1Button.backgroundColor = .searchBtnColor
             se2Button.backgroundColor = .searchBtnColor
             se3Button.backgroundColor = .searchBtnColor
@@ -448,7 +448,7 @@ extension ViewController {
     
     //&&& Close set
     func toggleAndColorChange(){
-        setSEButtonTapped = false
+        taishoButtonTapped = false
         se1Button.backgroundColor = .seButtonColor
         se2Button.backgroundColor = .seButtonColor
         se3Button.backgroundColor = .seButtonColor
@@ -702,7 +702,7 @@ extension ViewController {
 
         switch (gesture.state) {
             case .began:
-                if (setSEButtonTapped == false){
+                if (taishoButtonTapped == false){
                     print("longPress start")
                     print("tag ", button.tag)
                     switch (button.tag) {

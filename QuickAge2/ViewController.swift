@@ -568,7 +568,7 @@ class ViewController: UIViewController{
         button.layer.masksToBounds = true
         button.layer.cornerRadius = btnRect.size.width / 2
         button.tag = tag
-        button.addTarget(self, action: #selector(setSEDay(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(pushNengoButton(_:)), for: .touchUpInside)
         let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(longTap(_:)))
         button.addGestureRecognizer(longGesture)
         button.showsTouchWhenHighlighted = true
