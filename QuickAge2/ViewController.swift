@@ -18,28 +18,38 @@ class ViewController: UIViewController{
     let whatDayFontSize: CGFloat = 24
     let nengoFontSize:CGFloat = 16
     let ageFontSize:CGFloat = 36
-    let ageForDaysFontSize: CGFloat = 16
+    let ageFontSizeForiPhone11:CGFloat = 48
+    let ageForDaysFontSize: CGFloat = 20
     let baseDayFontSize: CGFloat = 20
     
     let calendar = Calendar.current
     
+    // MARK: add font size for button
+    let singleLetterBtnFontSize: CGFloat = 36
+    let doubleLetterBtnFontSize: CGFloat = 20
+    
+    var willTapFirstButton: Bool = true
+    var willTapForYearCount: Int = 0 //４桁のためInt
+    var willTapFirstButtonForMonth: Bool = true
     
     
     
-    // IF components layout---------------------------
     
+    
+    // components layout---------------------------
     lazy var baseDayLabel: UILabel = {
         let label = UILabel()
         
         if DeviceType.iPhone8 {
-            label.frame = CGRect(x:viewWidth * 0.0400, y:viewHeight * 0.2038, width:120, height:50)//0.531
+            label.frame = CGRect(x:viewWidth * 0.0400, y:viewHeight * 0.2038, width:viewWidth * 0.92, height:50)//0.531
         }else if DeviceType.iPhone8Plus {
-            label.frame = CGRect(x:viewWidth * 0.0400, y:viewHeight * 0.1938, width:120, height:50)
+            label.frame = CGRect(x:viewWidth * 0.0400, y:viewHeight * 0.1938, width:viewWidth * 0.92, height:50)
         }else{
-            label.frame = CGRect(x:viewWidth * 0.0400, y:viewHeight * 0.2138, width:120, height:50)
+            label.frame = CGRect(x:viewWidth * 0.0400, y:viewHeight * 0.2138, width:viewWidth * 0.92, height:50)
         }
         
         label.font = UIFont.systemFont(ofSize: whatDayFontSize)
+        label.adjustsFontSizeToFitWidth = true
         label.textAlignment = NSTextAlignment.left
         label.textColor = .white
         label.text = "今日は " + getNengo(searchDate: baseDate) + "年 " + getBaseDayStringFromBaseDay(searchDate: baseDate) + " " + getEText(searchDate: baseDate) + "曜日"
@@ -49,26 +59,20 @@ class ViewController: UIViewController{
     
     
     
-    
     lazy var yearLabel: UILabel = {
         let label = UILabel()
-        
-        
-        
         label.font = UIFont.systemFont(ofSize: dateFontSize)
         label.textAlignment = NSTextAlignment.left
         label.textColor = .white
         label.text = getDateYearText(isThisYear: true)
         label.sizeToFit()
         label.backgroundColor = .clear
-        //20201209
         let yearLabelTapGesture:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedLabel(_:)))
         label.isUserInteractionEnabled = true
         label.addGestureRecognizer(yearLabelTapGesture)
         return label
     }()
     
-
     lazy var dot1: UILabel = {
         let label = UILabel()
         label.frame = CGRect(x:viewWidth * 0.320, y:viewHeight * 0.1138, width:10, height:50)
@@ -79,7 +83,7 @@ class ViewController: UIViewController{
         label.backgroundColor = .clear
         return label
     }()
-    
+  
     lazy var monthLabel: UILabel = {
         let label = UILabel()
         label.frame = CGRect(x:viewWidth * 0.325, y:viewHeight * 0.1138, width:75, height:50)
@@ -131,7 +135,6 @@ class ViewController: UIViewController{
         return label
     }()
     
-    
     lazy var nengoLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: ageFontSize)
@@ -140,13 +143,16 @@ class ViewController: UIViewController{
         label.text = getNengo(searchDate: searchDate)
         label.sizeToFit()
         label.backgroundColor = .clear
+        let nengoLabelTapGesture:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedLabel(_:)))
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(nengoLabelTapGesture)
         return label
     }()
     
-    //Base Label
+    
+    // not in use ---------------------------------
     lazy var baseLabel: UILabel = {
         let label = UILabel()
-        
         if DeviceType.iPhone8 {
             label.frame = CGRect(x:viewWidth * 0.0400, y:viewHeight * 0.1038, width:120, height:50)//0.531
         }else if DeviceType.iPhone8Plus {
@@ -154,7 +160,6 @@ class ViewController: UIViewController{
         }else{
             label.frame = CGRect(x:viewWidth * 0.0400, y:viewHeight * 0.1138, width:120, height:50)
         }
-        
         label.backgroundColor = .clear
         label.font = UIFont.systemFont(ofSize: dateFontSize)
         label.textAlignment = NSTextAlignment.left
@@ -162,20 +167,27 @@ class ViewController: UIViewController{
         label.text = "9999"
         label.sizeToFit()
         label.backgroundColor = .clear
-        
         return label
     }()
+    // not in use ----------------------------
     
     
     
     lazy var ageLabel: UILabel = {
         let label = UILabel()
+        if DeviceType.iPhone8 {
+            label.frame = CGRect(x:viewWidth * 0.0400, y:viewHeight * 0.2838, width:viewWidth * 0.92, height:50)//0.531
+        }else if DeviceType.iPhone8Plus {
+            label.frame = CGRect(x:viewWidth * 0.0400, y:viewHeight * 0.2538, width:viewWidth * 0.92, height:50)
+        }else{
+            label.frame = CGRect(x:viewWidth * 0.0400, y:viewHeight * 0.2538, width:viewWidth * 0.92, height:70)
+        }
         label.font = UIFont.systemFont(ofSize: dateFontSize)
         label.textAlignment = NSTextAlignment.left
         label.textColor = UIColor.white
         label.text = ""
-        label.sizeToFit()
         label.backgroundColor = .clear
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
@@ -192,32 +204,59 @@ class ViewController: UIViewController{
     
 
     
-
-    //Button
-    lazy var se1Button: UIButton = {
+    // not in use ----------------------------
+    lazy var setReferenceDate: UIButton = {
+        let setReferenceButton = UIButton()
+        setReferenceButton.frame = CGRect(x: 50, y: viewHeight * 0.05, width: 100, height: viewHeight * 0.05)
+        setReferenceButton.backgroundColor = UIColor.searchBtnColor
+        setReferenceButton.titleLabel!.numberOfLines = 1
+        setReferenceButton.titleLabel?.textAlignment = NSTextAlignment.center
+        setReferenceButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        setReferenceButton.setTitle("基準日変更", for: UIControl.State.normal)
+        setReferenceButton.setTitle("", for: UIControl.State.highlighted)
+        setReferenceButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
+        setReferenceButton.layer.masksToBounds = true
+        setReferenceButton.addTarget(self, action: #selector(setRefDate(_:)), for: .touchUpInside)
+        setReferenceButton.showsTouchWhenHighlighted = true
+        return setReferenceButton
+    }()
+    // not in use ----------------------------
+    
+    
+    
+    // not in use ----------------------------
+    @objc func setRefDate(_ sender: UIButton){
+        
+    }
+    // not in use ----------------------------
+    
+    
+    
+    
+    // Button --------------------------------
+    lazy var taishoButton: UIButton = {
         let button = UIButton()
-        setSEButtonLayout(button: button, left: 1, top: 1, tag: 11, text: "大正")
+        setNengoButtonLayout(button: button, left: 1, top: 1, tag: 11, text: "大正")
         return button
     }()
     
-    lazy var se2Button: UIButton = {
+    lazy var syowaButton: UIButton = {
         let button = UIButton()
-        setSEButtonLayout(button: button, left: 2, top: 1, tag: 12, text: "昭和")
+        setNengoButtonLayout(button: button, left: 2, top: 1, tag: 12, text: "昭和")
         return button
     }()
 
-    lazy var se3Button: UIButton = {
+    lazy var heiseiButton: UIButton = {
         let button = UIButton()
-        setSEButtonLayout(button: button, left: 3, top: 1, tag: 13, text: "平成")
+        setNengoButtonLayout(button: button, left: 3, top: 1, tag: 13, text: "平成")
         return button
     }()
 
-    lazy var setSEButton: UIButton = {
+    lazy var reiwaButton: UIButton = {
         let button = UIButton()
-        setSEButtonLayout(button: button, left: 4, top: 1, tag: 14, text: "令和")
+        setNengoButtonLayout(button: button, left: 4, top: 1, tag: 14, text: "令和")
         return button
     }()
-    
     
     lazy var setYearButton: UIButton = {
         let button = UIButton()
@@ -239,7 +278,7 @@ class ViewController: UIViewController{
         button.titleLabel?.font = UIFont.systemFont(ofSize: singleLetterBtnFontSize)
         return button
     }()
-
+    
     lazy var todayButton: UIButton = {
         let button = UIButton()
         setYMDButtonLayout(button: button, left: 1, top: 5, tag: 24, text: "Today")
@@ -249,8 +288,6 @@ class ViewController: UIViewController{
     lazy var searchButton: UIButton = {
         let searchButton = UIButton()
         searchButton.frame = getButtonRect(left: 4, top: 5)
-        
-        // 2020 08 05 @Yugo Kawarada
         searchButton.backgroundColor = UIColor.searchBtnColor
         searchButton.titleLabel!.numberOfLines = 1
         searchButton.titleLabel?.textAlignment = NSTextAlignment.center
@@ -286,6 +323,7 @@ class ViewController: UIViewController{
     
     
     
+    // Number Button --------------------------
     lazy var ones1Button: UIButton = {
         let button = UIButton()
         setOnePlaceButtonLayout(button: button, left: 2, top: 2, tag: 1)
@@ -346,6 +384,10 @@ class ViewController: UIViewController{
         return button
     }()
 
+    
+    
+    
+    // seipeView ---------------------------
     lazy var swipeView: UIView = {
         let view = UIView()
         
@@ -371,18 +413,13 @@ class ViewController: UIViewController{
         return view
     }()
     
-    // MARK: add font size for button
-    let singleLetterBtnFontSize: CGFloat = 36
-    let doubleLetterBtnFontSize: CGFloat = 20
     
-    var willTapFirstButton: Bool = true
-    var willTapForYearCount: Int = 0 //４桁のためInt
-    var willTapFirstButtonForMonth: Bool = true
     
     
     
 
-    
+
+    // ViewDidLoad ---------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -400,6 +437,7 @@ class ViewController: UIViewController{
         searchYear = getDateYearText(isThisYear: true)
         yearNumber = Int(searchYear)!
         monthNumber = Int(searchMonth)!
+        calculateAge()
 
         print("searchDate: \(searchDate)")
     }
@@ -415,24 +453,26 @@ class ViewController: UIViewController{
     
     
     
-        
+    // func for layout ----------------------------
+    
     private func initViewSetting(){
         
         self.viewHeight = self.view.frame.height
         self.viewWidth = self.view.frame.width
         view.backgroundColor = UIColor.carnation
         
+        // not in use
         self.navigationController?.navigationBar.isTranslucent = true
-        
-        //--------
         
         displayDateLabelsInitLayoutSetting()
         controllersInitLayoutSetting()
     }
         
-        
+
+    
     func displayDateLabelsInitLayoutSetting(){
         
+        //view.addSubview(setReferenceDate)
         view.addSubview(whatDayLabel)
        
         view.addSubview(swipeView)
@@ -455,6 +495,7 @@ class ViewController: UIViewController{
     }
     
     
+    
     func labelLayout1(){
         baseDayLabel.translatesAutoresizingMaskIntoConstraints = false
         yearLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -464,7 +505,7 @@ class ViewController: UIViewController{
         dayLabel.translatesAutoresizingMaskIntoConstraints = false
         whatDayLabel.translatesAutoresizingMaskIntoConstraints = false
         nengoLabel.translatesAutoresizingMaskIntoConstraints = false
-        ageLabel.translatesAutoresizingMaskIntoConstraints = false
+//        ageLabel.translatesAutoresizingMaskIntoConstraints = false
         ageLabelForDay.translatesAutoresizingMaskIntoConstraints = false
         
         yearLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
@@ -489,28 +530,30 @@ class ViewController: UIViewController{
         whatDayLabel.leadingAnchor.constraint(equalTo: dayLabel.trailingAnchor,constant: 8).isActive = true
         nengoLabel.topAnchor.constraint(equalTo: yearLabel.bottomAnchor,constant: -8).isActive = true
         nengoLabel.leadingAnchor.constraint(equalTo: yearLabel.leadingAnchor,constant: 0).isActive = true
-        ageLabel.leadingAnchor.constraint(equalTo: yearLabel.leadingAnchor,constant: 8).isActive = true
-        ageLabel.topAnchor.constraint(equalTo: nengoLabel.bottomAnchor,constant: 12).isActive = true
+        //ageLabel.leadingAnchor.constraint(equalTo: yearLabel.leadingAnchor,constant: 8).isActive = true
+        //ageLabel.topAnchor.constraint(equalTo: nengoLabel.bottomAnchor,constant: 12).isActive = true
         ageLabelForDay.leadingAnchor.constraint(equalTo: ageLabel.leadingAnchor,constant: 12).isActive = true
-        ageLabelForDay.topAnchor.constraint(equalTo: ageLabel.bottomAnchor,constant: -8).isActive = true
+        ageLabelForDay.topAnchor.constraint(equalTo: ageLabel.bottomAnchor,constant: -4).isActive = true
     }
     
 
     
-    
+    // not in use -----------------------------------
     @objc func setBasicDay(){
 
     }
+    // not in use -----------------------------------
     
 
+    
     func controllersInitLayoutSetting(){
         view.addSubview(searchButton)
         view.addSubview(clearButton)
 
-        view.addSubview(se1Button)
-        view.addSubview(se2Button)
-        view.addSubview(se3Button)
-        view.addSubview(setSEButton)
+        view.addSubview(taishoButton)
+        view.addSubview(syowaButton)
+        view.addSubview(heiseiButton)
+        view.addSubview(reiwaButton)
         
         view.addSubview(ones1Button)
         view.addSubview(ones2Button)
@@ -534,7 +577,7 @@ class ViewController: UIViewController{
     
     
     // MARK: add functon for each button's sectons, tenplace, oneplace, month
-    // each  button's tag should be unique
+    // each  button's tag should be unique -------------------
     func setYMDButtonLayout(button: UIButton, left: Int, top: Int, tag: Int, text:String){
 
         let btnRect = getButtonRect(left: left, top: top)
@@ -554,8 +597,8 @@ class ViewController: UIViewController{
     
     
 
-    //SEButton layout setting
-    private func setSEButtonLayout(button: UIButton, left: Int, top: Int, tag: Int, text:String){
+    //NengoButton layout setting
+    private func setNengoButtonLayout(button: UIButton, left: Int, top: Int, tag: Int, text:String){
         let btnRect = getButtonRect(left: left, top: top)
         button.frame = btnRect
         button.backgroundColor = UIColor.seButtonColor
@@ -606,24 +649,18 @@ class ViewController: UIViewController{
 
         var originX: CGFloat = 0
         var originY: CGFloat = 0
+        
         switch(left){
             case 1:
-                
-                
                 originX = viewWidth * 0.075
                 break
             case 2:
-                
-                 // ここも設定
                  originX = viewWidth * 0.295
                  break
             case 3:
-                 // ここも設定
                 originX = viewWidth * 0.515
                 break
-                
             case 4:
-                 // ここも設定
                 originX = viewWidth * 0.735
                 break
             default:
@@ -631,7 +668,6 @@ class ViewController: UIViewController{
         }
         
         switch(top){
-            
             case 1:
                 if DeviceType.iPhoneXr || DeviceType.iPhoneXsMax || DeviceType.iPhone12 || DeviceType.iPhone12Pro || DeviceType.iPhone12ProMax {
                     originY = viewHeight * 0.421
@@ -700,13 +736,10 @@ class ViewController: UIViewController{
             default:
                 break
         }
-        
         let origin = CGPoint(x: originX, y: originY)
         
         return CGRect(origin: origin, size: size)
     }
-
-       
 }
 
 

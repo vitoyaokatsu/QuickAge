@@ -31,6 +31,19 @@ var serchMonthInt: Int = Int(searchMonth) ?? 0
 // --------------------
 
 var taishoButtonTapped: Bool = false
+var syowaButtonTapped: Bool = false
+var heiseiButtonTapped: Bool = false
+var reiwaButtonTapped: Bool = false
+var willTapFirstButtonForNengo: Bool = false
+var setNengoButtonTapped: Bool = false
+var nengoStrForTap = "nengoStrForTap"
+var nengoTappedNo = 0
+var nengoToGregorianum = 0
+
+var nengoOnesNumber = 0
+var nengoTenthNumber = 0
+var nengoNumber = 0
+
 
 var tapCount: Int = 0
 

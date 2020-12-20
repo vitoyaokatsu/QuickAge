@@ -10,8 +10,10 @@ import Foundation
 import UIKit
 
 extension ViewController {
+  
     
     
+    // label tapped and switch --------------------------
     @objc func tappedLabel(_ gesture: UITapGestureRecognizer){
         
         let label = gesture.view as! UILabel
@@ -23,14 +25,19 @@ extension ViewController {
                 monthButtonTapped()
             case dayLabel:
                 dayButtonTapped()
+            case nengoLabel:
+                nengoButtonTapped()
             default:
                 break
         }
-        
     }
+    
+    
         
     //&&& YMD 1) YMDButton switch
     @objc func pushYMDButton(_ sender:UIButton){
+        setNengoButtonTapped = false
+        calculateAge()
         switch (sender) {
         case setYearButton:
             yearButtonTapped()
@@ -46,6 +53,7 @@ extension ViewController {
             setYearButtonTapped = false
             setMonthButtonTapped = false
             setDayButtonTapped = false
+            setNengoButtonTapped = false
             setYearButton.backgroundColor = .ymdButtonColor
             setMonthButton.backgroundColor = .ymdButtonColor
             setDayButton.backgroundColor = .ymdButtonColor
@@ -53,18 +61,23 @@ extension ViewController {
             setYearButtonTapped = false
             setMonthButtonTapped = false
             setDayButtonTapped = false
+            setNengoButtonTapped = false
         }
     }
+    
+    
     
     //YMD 1-1) YbuttonTapped
     func yearButtonTapped(){
         setYearButtonTapped = true
         setMonthButtonTapped = false
         setDayButtonTapped = false
+        setNengoButtonTapped = false
         yearLabel.textColor = .gray
         setYearButton.backgroundColor = .onePlaceButtonColor
         setMonthButton.backgroundColor = .ymdButtonColor
         setDayButton.backgroundColor = .ymdButtonColor
+        searchYear = String(yearNumber)
         searchMonth = String(monthNumber)
         monthLabel.text = searchMonth
         dayLabel.text = String(dayNumber)
@@ -76,6 +89,7 @@ extension ViewController {
         setYearButtonTapped = false
         setMonthButtonTapped = true
         setDayButtonTapped = false
+        setNengoButtonTapped = false
         monthLabel.textColor = .gray
         setYearButton.backgroundColor = .ymdButtonColor
         setMonthButton.backgroundColor = .onePlaceButtonColor
@@ -91,6 +105,7 @@ extension ViewController {
         setYearButtonTapped = false
         setMonthButtonTapped = false
         setDayButtonTapped = true
+        setNengoButtonTapped = false
         dayLabel.textColor = .gray
         setYearButton.backgroundColor = .ymdButtonColor
         setMonthButton.backgroundColor = .ymdButtonColor
@@ -105,11 +120,33 @@ extension ViewController {
     
     
     
+    func nengoButtonTapped(){
+        calculateAge()
+        taishoButton.backgroundColor = .onePlaceButtonColor
+        syowaButton.backgroundColor = .onePlaceButtonColor
+        heiseiButton.backgroundColor = .onePlaceButtonColor
+        reiwaButton.backgroundColor = .onePlaceButtonColor
+        setYearButton.backgroundColor = .ymdButtonColor
+        setMonthButton.backgroundColor = .ymdButtonColor
+        setDayButton.backgroundColor = .ymdButtonColor
+        setYearButtonTapped = false
+        setMonthButtonTapped = false
+        setDayButtonTapped = false
+        setNengoButtonTapped = true
+        willTapFirstButtonForNengo = true
+        setYearButtonTapped = true
+        nengoLabel.textColor = .gray
+    }
+    
+    
+    
+    
     
     //&&& YMD 2-1) Y tapped
     @objc func pushOnesButton(_ sender: UIButton){
-
-        if setYearButtonTapped{
+        if setNengoButtonTapped{
+            setYearForNengo(number: sender.tag)
+        }else if setYearButtonTapped{
             willTapForYearCount += 1
             if willTapForYearCount == 5 {
                 willTapForYearCount = 0
@@ -126,6 +163,8 @@ extension ViewController {
         }
     }
     
+    
+    
     //&&& YMD 2-2) Set Year
     func setTappedDateForYear(number: Int){
 
@@ -138,45 +177,60 @@ extension ViewController {
                 yearOnesNumber = number
                 print("number43:\(number)")
                 yearNumber = yearThousoandNumber * 1000 + yearhundredNumber * 100 + yearTenthNumber * 10 + yearOnesNumber
-                searchYear = "000" + String(yearNumber)
-                yearLabel.text = searchYear
+                if( yearNumber == 0 ){
+                    searchYear = "0"
+                }else {
+                searchYear = String(yearNumber)
                 print("tapcount=1: \(searchYear)")
+                }
             case 2:
                 yearThousoandNumber = 0
                 yearhundredNumber = 0
                 yearTenthNumber = yearOnesNumber
                 yearOnesNumber = number
                 yearNumber = yearThousoandNumber * 1000 + yearhundredNumber * 100 + yearTenthNumber * 10 + yearOnesNumber
-                searchYear = "00" + String(yearNumber)
+                if yearNumber < 10{
+                    searchYear = "0" + String(yearNumber)
+                }else {
+                searchYear = String(yearNumber)
                 print("tapcount=2: \(searchYear)")
+                }
             case 3:
                 yearThousoandNumber = 0
                 yearhundredNumber = yearTenthNumber
                 yearTenthNumber = yearOnesNumber
                 yearOnesNumber = number
                 yearNumber = yearThousoandNumber * 1000 + yearhundredNumber * 100 + yearTenthNumber * 10 + yearOnesNumber
-                searchYear = "0" + String(yearNumber)
+                if yearNumber < 10 {
+                    searchYear = "00" + String(yearNumber)
+                }else if yearNumber < 100 {
+                    searchYear = "0" + String(yearNumber)
+                }else {
+                searchYear = String(yearNumber)
                 print("tapcount=3: \(searchYear)")
+                }
             case 4:
                 yearThousoandNumber = yearhundredNumber
                 yearhundredNumber = yearTenthNumber
                 yearTenthNumber = yearOnesNumber
                 yearOnesNumber = number
                 yearNumber = yearThousoandNumber * 1000 + yearhundredNumber * 100 + yearTenthNumber * 10 + yearOnesNumber
+                if yearNumber < 10 {
+                    searchYear = "000" + String(yearNumber)
+                }else if yearNumber < 100 {
+                    searchYear = "00" + String(yearNumber)
+                }else if yearNumber < 1000{
+                    searchYear = "0" + String(yearNumber)
+                }else {
                 searchYear = String(yearNumber)
                 print("tapcount=4: \(searchYear)")
+                }
             default:
-                break
+                yearNumber = Int(getDateYearText(isThisYear: true))!
+                willTapForYearCount = 0
             }
-        if willTapForYearCount == 5 {
-            yearLabel.text = "----"
-            yearLabel.textColor = .gray
-            yearNumber = Int(getDateYearText(isThisYear: true))!
-            searchYear = String(yearNumber)
-            willTapForYearCount = 0
-        }else {
         yearLabel.text = searchYear
-        }
+
     }
 
     
@@ -286,15 +340,12 @@ extension ViewController {
         searchMonth = getDateMonthText(isThisMonth: true)
         monthNumber = Int(searchMonth)!
         dayNumber = Int(getDateDayText(isToday: true))!
+        calculateAge()
         
         
         print("search date @ today button tapped: ", searchDate)
         
     }
-    
-    
-    
-    //------------------
     
     
     
@@ -339,124 +390,27 @@ extension ViewController {
     
     
     
-    // SD 1) case Switch
-    @objc func pushNengoButton(_ sender:UIButton){
-        switch (sender.tag) {
-        case 11:// taishoButton
-            setDayNumber()
-            calculateAge()
-            print("setSE1ButtonTapped in case:\(taishoButtonTapped)")
-            print("seDay1 in case:\(seDay1)")
-            if taishoButtonTapped == false {
-                if seDay1 == "not set"{
-//                    searchEvent()
-                }else { // in this case, Just get Event from seDay
-                    searchDay = seDay1
-                    searchEventForSE()
-                    var se1Date = dateFromString(string: seDay1, format: "yyyy/MM/dd")
-                    
-                    displayLeftDays(seDayTitle: leftDaysString , leftDays: seDay1ForAlert)
-                }
-            }else { //SetseButton == true, Set seDay with alert
-//                setSP1()
-                print("setSE1ButtonTapped infunc SP1-1:\(taishoButtonTapped)")
-                print("seDay1 infunc SP1-1:\(seDay1)")
-                //any alart
-                taishoButtonTapped = false
-                buttonEnable()
-                
-            }
-        case 12:
-            setDayNumber()
-            calculateAge()
-            print("setSE2ButtonTapped in case:\(taishoButtonTapped)")
-            print("seDay2 in case:\(seDay2)")
-            if taishoButtonTapped == false {
-                if seDay2 == "not set"{
-//                    searchEvent()
-                }else {
-                    //ここにアラート
-                    searchDay = seDay2//&&
-                    searchEventForSE()//&&
-                    var se2Date = dateFromString(string: seDay2, format: "yyyy/MM/dd")
-                    
-                    displayLeftDays(seDayTitle: leftDaysString , leftDays: seDay2ForAlert)
-                }
-            }else {
-                print("setSE2ButtonTapped infunc SP2-1:\(taishoButtonTapped)")
-                print("seDay2 infunc SP2-1:\(seDay2)")
-                
-                //any alart
-                taishoButtonTapped = false
-                buttonEnable()
-//                seAlertAndSet(seDayTitle: seDay2ForAlert, selectedSENo: 2)
-            }
-        case 13:
-            setDayNumber()
-            calculateAge()
-            print("setSE3ButtonTapped in case:\(taishoButtonTapped)")
-            print("seDay3 in case:\(seDay3)")
-            if taishoButtonTapped == false {
-                if seDay3 == "not set"{
-//                    searchEvent()
-                }else {
-                    searchDay = seDay3
-                    searchEventForSE()
-                    var se3Date = dateFromString(string: seDay3, format: "yyyy/MM/dd")
-                    
-                    displayLeftDays(seDayTitle: leftDaysString , leftDays: seDay3ForAlert)
-                }
-            }else {
-                print("setSE1ButtonTapped infunc SP3-1:\(taishoButtonTapped)")
-                print("seDay3 infunc SP3-1:\(seDay3)")
-                //any alart
-                taishoButtonTapped = false
-                buttonEnable()
-//                seAlertAndSet(seDayTitle: seDay3ForAlert, selectedSENo: 3)
-            }
-        case 14:// setSEButton
-            if taishoButtonTapped == false {
-            taishoButtonTapped = true//もどす
-            se1Button.backgroundColor = .searchBtnColor
-            se2Button.backgroundColor = .searchBtnColor
-            se3Button.backgroundColor = .searchBtnColor
-            buttonEnable()
-            }else {
-                setDayNumber()
-                calculateAge()
-                toggleAndColorChange()
-                buttonEnable()
-            }
-            
-        default:
-            print(sender.tag)
-        }
-    
-    }
 
 
-    
+    // not in use ------------------------
     func displayLeftDays(seDayTitle:String, leftDays:String){
         let alertForLeftDays: UIAlertController = UIAlertController(title: seDayTitle, message: leftDays, preferredStyle:  UIAlertController.Style.alert)
             alertForLeftDays.addAction(UIAlertAction(title: "OK",
                                                style: .default,
                                                handler: nil))
-        
         present(alertForLeftDays, animated: true)
     }
+    // not in use ------------------------
+    
     
     
     //&&& Close set
     func toggleAndColorChange(){
         taishoButtonTapped = false
-        se1Button.backgroundColor = .seButtonColor
-        se2Button.backgroundColor = .seButtonColor
-        se3Button.backgroundColor = .seButtonColor
+        taishoButton.backgroundColor = .seButtonColor
+        syowaButton.backgroundColor = .seButtonColor
+        heiseiButton.backgroundColor = .seButtonColor
     }
-    
-    
-    
-    // -------------------
     
     
     
@@ -464,6 +418,7 @@ extension ViewController {
     @objc func pushSettingButton(_ sender: UIButton) {
     
     }
+    
     
     
     func setDayNumber(){
@@ -485,10 +440,19 @@ extension ViewController {
     }
     
     
-    private func calculateAge(){
+    
+    
+    // calclation for Age
+    func calculateAge(){
+        
+        taishoButton.backgroundColor = .seButtonColor
+        syowaButton.backgroundColor = .seButtonColor
+        heiseiButton.backgroundColor = .seButtonColor
+        reiwaButton.backgroundColor = .seButtonColor
         
         setDayNumber()
         setMonthNumber()
+        setNengoNumber()
         
         if searchYear == "0" {
             yearLabel.text = "1"
@@ -505,29 +469,54 @@ extension ViewController {
         
         searchDay = searchYear + "/" + searchMonth + "/" + String(dayNumber)
         searchDate = dateFromString(string: searchDay, format: "yyyy/MM/dd")
-        //kokowohennkou
-//        baseDay = "1967/03/09"
-//        baseDate = dateFromString(string: baseDay, format: "yyyy/MM/dd")
+        
+        // ******* For virsionUp *******
+        
+        //baseDay = "1967/03/09"
+        //baseDate = dateFromString(string: baseDay, format: "yyyy/MM/dd")
         
         print("検索用文字列searchDate: \(searchDate)")
         print("検索用文字列baseDate: \(baseDate)")
-//        baseDayLabel.text = getBaseDayStringFromBaseDay(searchDate: baseDate)
+        
+        // ******* For virsionUp *******
+        
+        //baseDayLabel.text = getBaseDayStringFromBaseDay(searchDate: baseDate)
         
         whatDayLabel.text = getEText(searchDate: searchDate)
-        // get event data
+        
         dayLabel.textColor = .white
         nengoLabel.text = getNengo(searchDate: searchDate)
-//        getAge(firstDate: searchDate)
+        
+        //getAge(firstDate: searchDate)
+        nengoLabel.textColor = .white
         ageLabel.text = getAge(firstDate: searchDate, secondDate: baseDate)
         ageLabelForDay.text = getAgeForDay (firstDate: searchDate, secondDate: baseDate)
+        
+        
+        
+        // ******* For virsionUp *******
+        
+        //        if DeviceType.iPhone8 {
+        //            ageLabel.frame = CGRect(x:viewWidth * 0.0400, y:viewHeight * 0.1038, width:viewWidth * 0.92, height:50)//0.531
+        //        }else if DeviceType.iPhone8Plus {
+        //            ageLabel.frame = CGRect(x:viewWidth * 0.0400, y:viewHeight * 0.0938, width:viewWidth * 0.92, height:50)
+        //        }else{
+        //            ageLabel.frame = CGRect(x:viewWidth * 0.0400, y:viewHeight * 0.1138, width:viewWidth * 0.92, height:50)
+        //        }
+        //        ageLabel.adjustsFontSizeToFitWidth = true
+        
+        
+        
         //reset date tap count
         willTapFirstButton = true
         willTapFirstButtonForMonth = true
+        willTapFirstButtonForNengo = true
         willTapForYearCount = 0
     }
     
     
-    
+
+    // *** not in use ***
     private func searchEventForSE(){
         searchDate = dateFromString(string: searchDay, format: "yyyy/MM/dd")
 
@@ -540,10 +529,8 @@ extension ViewController {
         yearLabel.text = getYearText(serchDate: searchDate)
         monthLabel.text = getMonthText(serchDate: searchDate)
         dayLabel.text = getDayText(serchDate: searchDate)
-        // get event data
         searchYear = getYearText(serchDate: searchDate)
         searchMonth = getMonthText(serchDate: searchDate)
-//        dayNumber = -1
         dayNumber = Int(getDayText(serchDate: searchDate))!
     }
     
@@ -605,11 +592,10 @@ extension ViewController {
     @objc func pushSearchButton(_ sender: UIButton) {
                 
         calculateAge()
-//        self.events = getEvents(on: dt.removeTimes())
-//        tableView.reloadData()
-//        reloadInputViews()
         
     }
+
+    
     
     //&&& ClearButton tapped
     @objc func pushClearButton(_ sender: UIButton){
@@ -632,13 +618,7 @@ extension ViewController {
             willTapFirstButton = true
             dayNumber = -1
         }
-        
     }
-    
-    
-    
-    // -------------------
-    
     
     
     
@@ -651,6 +631,7 @@ extension ViewController {
     
     // ??? not in Use ???  unwind
     @IBAction func unwind(_ segue: UIStoryboardSegue) {
+
     }
     
     
@@ -658,9 +639,6 @@ extension ViewController {
     // ??? not in Use ???
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-//        let settingVC = segue.destination as! SettingViewController
-        
-       
         
     }
     
@@ -670,6 +648,7 @@ extension ViewController {
     @objc func doRightAction(sender:UISwipeGestureRecognizer){
         print("rightSwipe")
         leftSwipeAction()
+        calculateAge()
     }
     
     
@@ -678,6 +657,7 @@ extension ViewController {
     @objc func doLeftAction(sender:UISwipeGestureRecognizer){
         print("leftSwipe")
         rightSwipeAction()
+        calculateAge()
     }
     
     
@@ -690,7 +670,7 @@ extension ViewController {
     
     
     
-    // longTapForDeleteSEDays Action
+    // *** not in use ***  longTapForDeleteSEDays Action
     @objc func longTap(_ gesture: UIGestureRecognizer){
         
         print("Longtap")
@@ -735,7 +715,7 @@ extension ViewController {
     }
     
     
-    // AlertForDelete SEDays
+    // *** not in use *** AlertForDelete SEDays
     func seAlertAndDelete(SeDayTitle: String, selectedSENo: Int) {
         let alert: UIAlertController = UIAlertController(title: SeDayTitle, message: "\(deleteSEDayForAlert)", preferredStyle:  UIAlertController.Style.alert)
 
@@ -748,21 +728,21 @@ extension ViewController {
             switch (selectedSENo){
             case 1:
                
-                self.se1Button.setTitle(UserDefaultSetting.SEKeys.SE1.rawValue, for: .normal)
+                self.taishoButton.setTitle(UserDefaultSetting.SEKeys.SE1.rawValue, for: .normal)
                 seDay1 = notSetStr
                 UserDefaultSetting.saveData(key: UserDefaultSetting.SEKeys.SE1.rawValue, object: notSetStr)
                
             case 2:
                 
 
-                self.se2Button.setTitle(UserDefaultSetting.SEKeys.SE2.rawValue, for: .normal)
+                self.syowaButton.setTitle(UserDefaultSetting.SEKeys.SE2.rawValue, for: .normal)
                 seDay1 = notSetStr
                 UserDefaultSetting.saveData(key: UserDefaultSetting.SEKeys.SE2.rawValue, object: notSetStr)
                 
             case 3:
                 
 
-                self.se3Button.setTitle(UserDefaultSetting.SEKeys.SE3.rawValue, for: .normal)
+                self.heiseiButton.setTitle(UserDefaultSetting.SEKeys.SE3.rawValue, for: .normal)
                 seDay1 = notSetStr
                 UserDefaultSetting.saveData(key: UserDefaultSetting.SEKeys.SE3.rawValue, object: notSetStr)
                 
@@ -783,8 +763,7 @@ extension ViewController {
         alert.addAction(defaultAction)
 
         present(alert, animated: true, completion: nil)
-    }
- 
+    } 
 
 
 }
