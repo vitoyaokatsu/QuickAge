@@ -40,6 +40,9 @@ class ViewController: UIViewController{
     lazy var baseDayLabel: UILabel = {
         let label = UILabel()
         
+        // will chane for Advertising Space
+        // ??????????? need to adjustfontsize ????????
+        // ??????????? need to release constraint ?????????
         if DeviceType.iPhone8 {
             label.frame = CGRect(x:viewWidth * 0.0400, y:viewHeight * 0.2038, width:viewWidth * 0.92, height:50)//0.531
         }else if DeviceType.iPhone8Plus {

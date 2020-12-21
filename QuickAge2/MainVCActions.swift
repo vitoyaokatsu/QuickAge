@@ -600,7 +600,12 @@ extension ViewController {
     //&&& ClearButton tapped
     @objc func pushClearButton(_ sender: UIButton){
         
-        if setYearButtonTapped {
+        if setNengoButtonTapped {
+            nengoLabel.text = "----"
+            nengoLabel.textColor = .gray
+            willTapFirstButtonForNengo = true
+            
+        }else if setYearButtonTapped {
             yearLabel.text = "----"
             yearLabel.textColor = .gray
             willTapForYearCount = 0

@@ -250,7 +250,7 @@
 			};
 			buildConfigurationList = 2D14A57325750AB300D19B2A /* Build configuration list for PBXProject "QuickAge2" */;
 			compatibilityVersion = "Xcode 9.3";
-			developmentRegion = en;
+			developmentRegion = ja;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
