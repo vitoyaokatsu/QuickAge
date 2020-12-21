@@ -296,12 +296,13 @@ class ViewController: UIViewController{
         searchButton.titleLabel?.textAlignment = NSTextAlignment.center
         searchButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         searchButton.setTitle("Check", for: UIControl.State.normal)
-        searchButton.setTitle("", for: UIControl.State.highlighted)
+//        searchButton.setTitle("", for: UIControl.State.highlighted)
         searchButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
         searchButton.layer.masksToBounds = true
         searchButton.layer.cornerRadius = getButtonRect(left: 4, top: 5).size.width / 2
         searchButton.addTarget(self, action: #selector(pushSearchButton(_:)), for: .touchUpInside)
-        searchButton.showsTouchWhenHighlighted = true
+        searchButton.setBackgroundImage(createImageFromUIColor(color: UIColor.purple), for: .highlighted)
+//        searchButton.showsTouchWhenHighlighted = true
         return searchButton
     }()
     
@@ -315,12 +316,13 @@ class ViewController: UIViewController{
         let text = NSLocalizedString("Clear", comment: "")
         print(text)
         clearButton.setTitle(text, for: UIControl.State.normal)
-        clearButton.setTitle("", for: UIControl.State.highlighted)
+//        clearButton.setTitle("", for: UIControl.State.highlighted)
         clearButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
         clearButton.layer.masksToBounds = true
         clearButton.layer.cornerRadius = getButtonRect(left: 2, top: 5).size.width / 2
         clearButton.addTarget(self, action: #selector(pushClearButton(_:)), for: .touchUpInside)
-        clearButton.showsTouchWhenHighlighted = true
+        clearButton.setBackgroundImage(createImageFromUIColor(color: UIColor.purple), for: .highlighted)
+//        clearButton.showsTouchWhenHighlighted = true
         return clearButton
     }()
     
@@ -595,7 +597,7 @@ class ViewController: UIViewController{
         button.layer.cornerRadius = btnRect.size.width / 2
         button.tag = tag
         button.addTarget(self, action: #selector(pushYMDButton(_:)), for: .touchUpInside)
-        button.showsTouchWhenHighlighted = true
+//        button.showsTouchWhenHighlighted = true
     }
     
     
@@ -617,7 +619,7 @@ class ViewController: UIViewController{
         button.addTarget(self, action: #selector(pushNengoButton(_:)), for: .touchUpInside)
         let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(longTap(_:)))
         button.addGestureRecognizer(longGesture)
-        button.showsTouchWhenHighlighted = true
+//        button.showsTouchWhenHighlighted = true
     }
 
     
@@ -635,7 +637,8 @@ class ViewController: UIViewController{
         button.layer.cornerRadius = btnRect.size.width / 2
         button.tag = tag
         button.addTarget(self, action: #selector(pushOnesButton(_:)), for: .touchUpInside)
-        button.showsTouchWhenHighlighted = true
+//        button.setBackgroundImage(createImageFromUIColor(color: UIColor.onePlaceButtonColor), for: .normal)
+        button.setBackgroundImage(createImageFromUIColor(color: UIColor.ymdButtonColor), for: .highlighted)
     }
 
     

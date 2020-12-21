@@ -49,6 +49,7 @@ extension ViewController {
             dayButtonTapped()
             
         case todayButton:
+            todayButton.setBackgroundImage(createImageFromUIColor(color: UIColor.onePlaceButtonColor), for: .highlighted)
             moveToToday()
             setYearButtonTapped = false
             setMonthButtonTapped = false

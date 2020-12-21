@@ -69,3 +69,17 @@ func getBaseDayStringFromBaseDay(searchDate: Date)->(String){
     print("baseDayStr \(baseDayStr)")
     return baseDayStr
 }
+
+func createImageFromUIColor(color: UIColor) -> UIImage {
+  // 1x1のbitmapを作成
+  let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
+  UIGraphicsBeginImageContext(rect.size)
+  let context = UIGraphicsGetCurrentContext()
+  // bitmapを塗りつぶし
+    context!.setFillColor(color.cgColor)
+    context!.fill(rect)
+  // UIImageに変換
+  let image = UIGraphicsGetImageFromCurrentImageContext()
+  UIGraphicsEndImageContext()
+    return image!
+}
