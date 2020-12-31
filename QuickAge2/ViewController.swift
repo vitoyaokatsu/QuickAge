@@ -26,6 +26,7 @@ class ViewController: UIViewController{
     
     // MARK: add font size for button
     let singleLetterBtnFontSize: CGFloat = 36
+    let singleLetterJpnBtnFontSize: CGFloat = 28
     let doubleLetterBtnFontSize: CGFloat = 20
     
     var willTapFirstButton: Bool = true
@@ -240,51 +241,52 @@ class ViewController: UIViewController{
     lazy var taishoButton: UIButton = {
         let button = UIButton()
         setNengoButtonLayout(button: button, left: 1, top: 1, tag: 11, text: "大正")
+//        button.titleLabel?.font = UIFont.systemFont(ofSize: singleLetterBtnFontSize)
         return button
     }()
     
     lazy var syowaButton: UIButton = {
         let button = UIButton()
         setNengoButtonLayout(button: button, left: 2, top: 1, tag: 12, text: "昭和")
+//        button.titleLabel?.font = UIFont.systemFont(ofSize: singleLetterBtnFontSize)
         return button
     }()
 
     lazy var heiseiButton: UIButton = {
         let button = UIButton()
         setNengoButtonLayout(button: button, left: 3, top: 1, tag: 13, text: "平成")
+//        button.titleLabel?.font = UIFont.systemFont(ofSize: singleLetterBtnFontSize)
         return button
     }()
 
     lazy var reiwaButton: UIButton = {
         let button = UIButton()
         setNengoButtonLayout(button: button, left: 4, top: 1, tag: 14, text: "令和")
+//        button.titleLabel?.font = UIFont.systemFont(ofSize: singleLetterBtnFontSize)
         return button
     }()
     
     lazy var setYearButton: UIButton = {
         let button = UIButton()
-        setYMDButtonLayout(button: button, left: 1, top: 2, tag: 21, text: "Y")
-        button.titleLabel?.font = UIFont.systemFont(ofSize: singleLetterBtnFontSize)
+        setYMDButtonLayout(button: button, left: 1, top: 2, tag: 21, text: "西暦")
         return button
     }()
 
     lazy var setMonthButton: UIButton = {
         let button = UIButton()
-        setYMDButtonLayout(button: button, left: 1, top: 3, tag: 22, text: "M")
-        button.titleLabel?.font = UIFont.systemFont(ofSize: singleLetterBtnFontSize)
+        setYMDButtonLayout(button: button, left: 1, top: 3, tag: 22, text: "月")
         return button
     }()
 
     lazy var setDayButton: UIButton = {
         let button = UIButton()
-        setYMDButtonLayout(button: button, left: 1, top: 4, tag: 23, text: "D")
-        button.titleLabel?.font = UIFont.systemFont(ofSize: singleLetterBtnFontSize)
+        setYMDButtonLayout(button: button, left: 1, top: 4, tag: 23, text: "日")
         return button
     }()
     
     lazy var todayButton: UIButton = {
         let button = UIButton()
-        setYMDButtonLayout(button: button, left: 1, top: 5, tag: 24, text: "Today")
+        setYMDButtonLayout(button: button, left: 1, top: 5, tag: 24, text: "今日")
         return button
     }()
     
@@ -295,7 +297,8 @@ class ViewController: UIViewController{
         searchButton.titleLabel!.numberOfLines = 1
         searchButton.titleLabel?.textAlignment = NSTextAlignment.center
         searchButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
-        searchButton.setTitle("Check", for: UIControl.State.normal)
+        searchButton.setTitle("検索", for: UIControl.State.normal)
+        searchButton.titleLabel?.font = UIFont.systemFont(ofSize: singleLetterJpnBtnFontSize)
 //        searchButton.setTitle("", for: UIControl.State.highlighted)
         searchButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
         searchButton.layer.masksToBounds = true
@@ -313,9 +316,10 @@ class ViewController: UIViewController{
         clearButton.titleLabel!.numberOfLines = 1
         clearButton.titleLabel?.textAlignment = NSTextAlignment.center
         clearButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
-        let text = NSLocalizedString("Clear", comment: "")
+        let text = NSLocalizedString("訂正", comment: "")
         print(text)
         clearButton.setTitle(text, for: UIControl.State.normal)
+        clearButton.titleLabel?.font = UIFont.systemFont(ofSize: singleLetterJpnBtnFontSize)
 //        clearButton.setTitle("", for: UIControl.State.highlighted)
         clearButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
         clearButton.layer.masksToBounds = true
@@ -591,11 +595,12 @@ class ViewController: UIViewController{
         button.setTitleColor(.white, for: UIControl.State.normal)
         button.setTitle(text, for: UIControl.State.normal)
         button.titleLabel?.textAlignment = .center
-        button.titleLabel?.adjustsFontSizeToFitWidth = true
+//        button.titleLabel?.adjustsFontSizeToFitWidth = true
         button.titleLabel?.minimumScaleFactor = 10 / UIFont.buttonFontSize
         button.layer.masksToBounds = true
         button.layer.cornerRadius = btnRect.size.width / 2
         button.tag = tag
+        button.titleLabel?.font = UIFont.systemFont(ofSize: singleLetterJpnBtnFontSize)
         button.addTarget(self, action: #selector(pushYMDButton(_:)), for: .touchUpInside)
 //        button.showsTouchWhenHighlighted = true
     }
@@ -617,8 +622,9 @@ class ViewController: UIViewController{
         button.layer.cornerRadius = btnRect.size.width / 2
         button.tag = tag
         button.addTarget(self, action: #selector(pushNengoButton(_:)), for: .touchUpInside)
-        let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(longTap(_:)))
-        button.addGestureRecognizer(longGesture)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: singleLetterJpnBtnFontSize)
+//        let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(longTap(_:)))
+//        button.addGestureRecognizer(longGesture)
 //        button.showsTouchWhenHighlighted = true
     }
 

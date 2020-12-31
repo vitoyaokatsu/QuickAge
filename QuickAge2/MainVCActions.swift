@@ -20,12 +20,20 @@ extension ViewController {
         
         switch label {
             case yearLabel:
+                self.searchButton.setTitle("年/検索", for: .normal)
+                self.searchButton.titleLabel?.font = UIFont.systemFont(ofSize: doubleLetterBtnFontSize)
                 yearButtonTapped()
             case monthLabel:
+                self.searchButton.setTitle("月/検索", for: .normal)
+                self.searchButton.titleLabel?.font = UIFont.systemFont(ofSize: doubleLetterBtnFontSize)
                 monthButtonTapped()
             case dayLabel:
+                self.searchButton.setTitle("日/検索", for: .normal)
+                self.searchButton.titleLabel?.font = UIFont.systemFont(ofSize: doubleLetterBtnFontSize)
                 dayButtonTapped()
             case nengoLabel:
+                self.searchButton.setTitle("年/検索", for: .normal)
+                self.searchButton.titleLabel?.font = UIFont.systemFont(ofSize: doubleLetterBtnFontSize)
                 nengoButtonTapped()
             default:
                 break
@@ -41,12 +49,16 @@ extension ViewController {
         switch (sender) {
         case setYearButton:
             yearButtonTapped()
-            
+            self.searchButton.setTitle("年/検索", for: .normal)
+            self.searchButton.titleLabel?.font = UIFont.systemFont(ofSize: doubleLetterBtnFontSize)
         case setMonthButton:
             monthButtonTapped()
-            
+            self.searchButton.setTitle("月/検索", for: .normal)
+            self.searchButton.titleLabel?.font = UIFont.systemFont(ofSize: doubleLetterBtnFontSize)
         case setDayButton:
             dayButtonTapped()
+            self.searchButton.setTitle("日/検索", for: .normal)
+            self.searchButton.titleLabel?.font = UIFont.systemFont(ofSize: doubleLetterBtnFontSize)
             
         case todayButton:
             todayButton.setBackgroundImage(createImageFromUIColor(color: UIColor.onePlaceButtonColor), for: .highlighted)
@@ -122,6 +134,8 @@ extension ViewController {
     
     
     func nengoButtonTapped(){
+        self.searchButton.setTitle("年/検索", for: .normal)
+        self.searchButton.titleLabel?.font = UIFont.systemFont(ofSize: doubleLetterBtnFontSize)
         calculateAge()
         taishoButton.backgroundColor = .onePlaceButtonColor
         syowaButton.backgroundColor = .onePlaceButtonColor
@@ -342,6 +356,8 @@ extension ViewController {
         monthNumber = Int(searchMonth)!
         dayNumber = Int(getDateDayText(isToday: true))!
         calculateAge()
+        self.searchButton.setTitle("検索", for: .normal)
+        self.searchButton.titleLabel?.font = UIFont.systemFont(ofSize: singleLetterJpnBtnFontSize)
         
         
         print("search date @ today button tapped: ", searchDate)

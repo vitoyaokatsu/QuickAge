@@ -98,6 +98,7 @@ extension ViewController {
     
     func setNengoNumber(){
         if willTapFirstButtonForNengo == false {
+            
             switch nengoTappedNo {
             case 11:
                 if nengoNumber < 1 {
@@ -148,4 +149,49 @@ extension ViewController {
    
     }
     
+    
+    
+    
+//    @objc func longTap(_ gesture: UIGestureRecognizer){
+//        
+////        print("Longtap")
+//        
+//        guard let button = gesture.view as? UIButton else {
+//            print("Sender is not a button")
+//            return
+//        }
+//
+//        switch (gesture.state) {
+//            case .began:
+//                if (taishoButtonTapped == false){
+//                    print("longPress start")
+//                    print("tag ", button.tag)
+//                    switch (button.tag) {
+//                    case 11:
+//                        if !(seDay1 == "not set"){
+//                            deleteSEDayForAlert = seDay1
+//                            seAlertAndDelete(SeDayTitle: seDay1ForAlert, selectedSENo: 1)
+//                        }
+//                    case 12:
+//                        if !(seDay2 == "not set"){
+//                            deleteSEDayForAlert = seDay2
+//                            seAlertAndDelete(SeDayTitle: seDay2ForAlert, selectedSENo: 2)
+//                        }
+//                    case 13:
+//                        if !(seDay3 == "not set"){
+//                            deleteSEDayForAlert = seDay3
+//                            seAlertAndDelete(SeDayTitle: seDay3ForAlert, selectedSENo: 3)
+//                        }
+//                    case 14:
+//                        break
+//                    default:
+//                        break
+//                    }
+//                }
+//        case .ended:
+//            print("longPress end")
+//        default:
+//            break
+//        }
+//    }
 }
