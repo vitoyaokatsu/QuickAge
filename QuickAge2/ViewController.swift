@@ -65,6 +65,13 @@ class ViewController: UIViewController{
     
     lazy var yearLabel: UILabel = {
         let label = UILabel()
+        if DeviceType.iPhone8 {
+            label.frame = CGRect(x:viewWidth * 0.0400, y:viewHeight * 0.2838, width:viewWidth * 0.92, height:50)//0.531
+        }else if DeviceType.iPhone8Plus {
+            label.frame = CGRect(x:viewWidth * 0.0400, y:viewHeight * 0.2538, width:viewWidth * 0.92, height:50)
+        }else{
+            label.frame = CGRect(x:viewWidth * 0.0400, y:viewHeight * 0.2538, width:viewWidth * 0.92, height:70)
+        }
         label.font = UIFont.systemFont(ofSize: dateFontSize)
         label.textAlignment = NSTextAlignment.left
         label.textColor = .white
@@ -179,13 +186,13 @@ class ViewController: UIViewController{
     
     lazy var ageLabel: UILabel = {
         let label = UILabel()
-        if DeviceType.iPhone8 {
-            label.frame = CGRect(x:viewWidth * 0.0400, y:viewHeight * 0.2838, width:viewWidth * 0.92, height:50)//0.531
-        }else if DeviceType.iPhone8Plus {
-            label.frame = CGRect(x:viewWidth * 0.0400, y:viewHeight * 0.2538, width:viewWidth * 0.92, height:50)
-        }else{
-            label.frame = CGRect(x:viewWidth * 0.0400, y:viewHeight * 0.2538, width:viewWidth * 0.92, height:70)
-        }
+//        if DeviceType.iPhone8 {
+//            label.frame = CGRect(x:viewWidth * 0.0400, y:viewHeight * 0.2838, width:viewWidth * 0.92, height:50)//0.531
+//        }else if DeviceType.iPhone8Plus {
+//            label.frame = CGRect(x:viewWidth * 0.0400, y:viewHeight * 0.2538, width:viewWidth * 0.92, height:50)
+//        }else{
+//            label.frame = CGRect(x:viewWidth * 0.0400, y:viewHeight * 0.2538, width:viewWidth * 0.92, height:70)
+//        }
         label.font = UIFont.systemFont(ofSize: dateFontSize)
         label.textAlignment = NSTextAlignment.left
         label.textColor = UIColor.white
@@ -401,13 +408,13 @@ class ViewController: UIViewController{
         let view = UIView()
         
         if DeviceType.iPhone8 {
-            view.frame = CGRect.init(x: 0, y: viewHeight * 0.1038, width: viewWidth, height: 128)
+            view.frame = CGRect.init(x: 0, y: viewHeight * 0.15, width: viewWidth, height: 166)
         }else if DeviceType.iPhone8Plus{
-            view.frame = CGRect.init(x: 0, y: viewHeight * 0.0938, width: viewWidth, height: 130)
+            view.frame = CGRect.init(x: 0, y: viewHeight * 0.14, width: viewWidth, height: 180)
         }else if DeviceType.iPhone11Pro{
-            view.frame = CGRect.init(x: 0, y: viewHeight * 0.1138, width: viewWidth, height: 142)
+            view.frame = CGRect.init(x: 0, y: viewHeight * 0.15, width: viewWidth, height: 180)
         }else{
-            view.frame = CGRect.init(x: 0, y: viewHeight * 0.1138, width: viewWidth, height: 150)
+            view.frame = CGRect.init(x: 0, y: viewHeight * 0.15, width: viewWidth, height: 180)
         }
         
         let rightSwipeAction = UISwipeGestureRecognizer(target: self, action: #selector(doRightAction(sender:)))
@@ -418,7 +425,7 @@ class ViewController: UIViewController{
         
         view.addGestureRecognizer(rightSwipeAction)
         view.addGestureRecognizer(leftSwipeAction)
-        
+        view.backgroundColor = .clear
         return view
     }()
     
@@ -515,18 +522,21 @@ class ViewController: UIViewController{
         whatDayLabel.translatesAutoresizingMaskIntoConstraints = false
         nengoLabel.translatesAutoresizingMaskIntoConstraints = false
 //        ageLabel.translatesAutoresizingMaskIntoConstraints = false
+        ageLabel.translatesAutoresizingMaskIntoConstraints = false
         ageLabelForDay.translatesAutoresizingMaskIntoConstraints = false
+//        swipeView.translatesAutoresizingMaskIntoConstraints = false
         
         yearLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         dot1.heightAnchor.constraint(equalToConstant: 50).isActive = true
         monthLabel.heightAnchor.constraint(equalToConstant:50).isActive  = true
         dot2.heightAnchor.constraint(equalToConstant: 50).isActive = true
         dayLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        swipeView.heightAnchor.constraint(equalToConstant: 130).isActive = true
         
         baseDayLabel.leadingAnchor.constraint(equalTo: baseLabel.leadingAnchor, constant: 0).isActive = true
         baseDayLabel.topAnchor.constraint(equalTo: baseLabel.topAnchor, constant: 0).isActive = true
         yearLabel.leadingAnchor.constraint(equalTo: baseLabel.leadingAnchor).isActive = true
-        yearLabel.topAnchor.constraint(equalTo: baseDayLabel.bottomAnchor, constant: 0).isActive = true
+        yearLabel.topAnchor.constraint(equalTo: baseDayLabel.bottomAnchor, constant: 80).isActive = true
         dot1.bottomAnchor.constraint(equalTo: yearLabel.bottomAnchor).isActive = true
         dot1.leadingAnchor.constraint(equalTo: yearLabel.trailingAnchor,constant: 0).isActive = true
         monthLabel.bottomAnchor.constraint(equalTo: dot1.bottomAnchor).isActive = true
@@ -539,8 +549,12 @@ class ViewController: UIViewController{
         whatDayLabel.leadingAnchor.constraint(equalTo: dayLabel.trailingAnchor,constant: 8).isActive = true
         nengoLabel.topAnchor.constraint(equalTo: yearLabel.bottomAnchor,constant: -8).isActive = true
         nengoLabel.leadingAnchor.constraint(equalTo: yearLabel.leadingAnchor,constant: 0).isActive = true
-        //ageLabel.leadingAnchor.constraint(equalTo: yearLabel.leadingAnchor,constant: 8).isActive = true
-        //ageLabel.topAnchor.constraint(equalTo: nengoLabel.bottomAnchor,constant: 12).isActive = true
+        ageLabel.leadingAnchor.constraint(equalTo: baseLabel.leadingAnchor).isActive = true
+        ageLabel.topAnchor.constraint(equalTo: baseDayLabel.bottomAnchor, constant: 0).isActive = true
+//        swipeView.topAnchor.constraint(equalTo: ageLabel.topAnchor).isActive = true
+//        swipeView.leadingAnchor.constraint(equalTo: baseLabel.leadingAnchor).isActive = true
+//        ageLabel.leadingAnchor.constraint(equalTo: yearLabel.leadingAnchor,constant: 8).isActive = true
+//        ageLabel.topAnchor.constraint(equalTo: nengoLabel.bottomAnchor,constant: 12).isActive = true
         ageLabelForDay.leadingAnchor.constraint(equalTo: ageLabel.leadingAnchor,constant: 12).isActive = true
         ageLabelForDay.topAnchor.constraint(equalTo: ageLabel.bottomAnchor,constant: -4).isActive = true
     }

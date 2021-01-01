@@ -506,6 +506,9 @@ extension ViewController {
         
         //getAge(firstDate: searchDate)
         nengoLabel.textColor = .white
+//        if (searchDate > baseDate){
+//            searchDate
+//        }
         ageLabel.text = getAge(firstDate: searchDate, secondDate: baseDate)
         ageLabelForDay.text = getAgeForDay (firstDate: searchDate, secondDate: baseDate)
         
