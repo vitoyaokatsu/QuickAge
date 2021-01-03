@@ -610,8 +610,15 @@ extension ViewController {
     
     //&&& SearchButton tapped
     @objc func pushSearchButton(_ sender: UIButton) {
-                
+        
         calculateAge()
+        
+        //show ads if it's ready
+        if interstitial.isReady {
+            interstitial.present(fromRootViewController: self)
+          } else {
+            print("Ad wasn't ready")
+          }
         
     }
 

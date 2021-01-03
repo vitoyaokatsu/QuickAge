@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E51630380D33DAE3B7C570A /* Pods_QuickAge2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B377FF1FF5C4E64BB38BA31 /* Pods_QuickAge2Tests.framework */; };
 		2D043CAE25834F970018050E /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D043CAD25834F970018050E /* Device.swift */; };
 		2D043CB325834FBD0018050E /* GrobalProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D043CB225834FBD0018050E /* GrobalProps.swift */; };
 		2D043CB9258350420018050E /* MainVCActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D043CB8258350420018050E /* MainVCActions.swift */; };
@@ -26,6 +27,8 @@
 		2D7B22922586113500D05AC7 /* CalDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7B22912586113500D05AC7 /* CalDate.swift */; };
 		2DAE165525836A0800451F63 /* Button2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAE165425836A0800451F63 /* Button2.swift */; };
 		2DE4236925879A7500929E84 /* Localization.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2DE4236B25879A7500929E84 /* Localization.strings */; };
+		54D767D5B0ABE6C5888B8FC0 /* Pods_QuickAge2_QuickAge2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BEBD81CAAF3D71A576DB5F /* Pods_QuickAge2_QuickAge2UITests.framework */; };
+		A149D7D4463757FE1889D9A1 /* Pods_QuickAge2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 399D7DE5DDA928D1015E2B5F /* Pods_QuickAge2.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		094CF1D1E303850CCADB5065 /* Pods-QuickAge2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickAge2.release.xcconfig"; path = "Target Support Files/Pods-QuickAge2/Pods-QuickAge2.release.xcconfig"; sourceTree = "<group>"; };
 		2D043CAD25834F970018050E /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		2D043CB225834FBD0018050E /* GrobalProps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrobalProps.swift; sourceTree = "<group>"; };
 		2D043CB8258350420018050E /* MainVCActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainVCActions.swift; sourceTree = "<group>"; };
@@ -72,6 +76,14 @@
 		2DAE165425836A0800451F63 /* Button2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button2.swift; sourceTree = "<group>"; };
 		2DE4236025879A0000929E84 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		2DE4236A25879A7500929E84 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localization.strings; sourceTree = "<group>"; };
+		30803BF9053417266665DFA4 /* Pods-QuickAge2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickAge2Tests.debug.xcconfig"; path = "Target Support Files/Pods-QuickAge2Tests/Pods-QuickAge2Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		399D7DE5DDA928D1015E2B5F /* Pods_QuickAge2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickAge2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B377FF1FF5C4E64BB38BA31 /* Pods_QuickAge2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickAge2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B8F40EBD68F6017C6B55424 /* Pods-QuickAge2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickAge2.debug.xcconfig"; path = "Target Support Files/Pods-QuickAge2/Pods-QuickAge2.debug.xcconfig"; sourceTree = "<group>"; };
+		B548B33CC8B3DF696CD7B381 /* Pods-QuickAge2-QuickAge2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickAge2-QuickAge2UITests.debug.xcconfig"; path = "Target Support Files/Pods-QuickAge2-QuickAge2UITests/Pods-QuickAge2-QuickAge2UITests.debug.xcconfig"; sourceTree = "<group>"; };
+		CCBC3DD1549C8FBC0C0FBDFC /* Pods-QuickAge2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickAge2Tests.release.xcconfig"; path = "Target Support Files/Pods-QuickAge2Tests/Pods-QuickAge2Tests.release.xcconfig"; sourceTree = "<group>"; };
+		E3BEBD81CAAF3D71A576DB5F /* Pods_QuickAge2_QuickAge2UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickAge2_QuickAge2UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB4D8D6037C039B6BC625B52 /* Pods-QuickAge2-QuickAge2UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickAge2-QuickAge2UITests.release.xcconfig"; path = "Target Support Files/Pods-QuickAge2-QuickAge2UITests/Pods-QuickAge2-QuickAge2UITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A149D7D4463757FE1889D9A1 /* Pods_QuickAge2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E51630380D33DAE3B7C570A /* Pods_QuickAge2Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54D767D5B0ABE6C5888B8FC0 /* Pods_QuickAge2_QuickAge2UITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,6 +132,8 @@
 				2D14A59125750ABD00D19B2A /* QuickAge2Tests */,
 				2D14A59C25750ABD00D19B2A /* QuickAge2UITests */,
 				2D14A57925750AB300D19B2A /* Products */,
+				4F4D1DDD6BB65EAC5DD6B99B /* Pods */,
+				38EC63B4D9E49446480BD118 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -170,6 +187,30 @@
 			path = QuickAge2UITests;
 			sourceTree = "<group>";
 		};
+		38EC63B4D9E49446480BD118 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				399D7DE5DDA928D1015E2B5F /* Pods_QuickAge2.framework */,
+				E3BEBD81CAAF3D71A576DB5F /* Pods_QuickAge2_QuickAge2UITests.framework */,
+				3B377FF1FF5C4E64BB38BA31 /* Pods_QuickAge2Tests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4F4D1DDD6BB65EAC5DD6B99B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9B8F40EBD68F6017C6B55424 /* Pods-QuickAge2.debug.xcconfig */,
+				094CF1D1E303850CCADB5065 /* Pods-QuickAge2.release.xcconfig */,
+				B548B33CC8B3DF696CD7B381 /* Pods-QuickAge2-QuickAge2UITests.debug.xcconfig */,
+				FB4D8D6037C039B6BC625B52 /* Pods-QuickAge2-QuickAge2UITests.release.xcconfig */,
+				30803BF9053417266665DFA4 /* Pods-QuickAge2Tests.debug.xcconfig */,
+				CCBC3DD1549C8FBC0C0FBDFC /* Pods-QuickAge2Tests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -177,9 +218,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D14A5A225750ABD00D19B2A /* Build configuration list for PBXNativeTarget "QuickAge2" */;
 			buildPhases = (
+				64D0EF8DC6B4160C1F0DD954 /* [CP] Check Pods Manifest.lock */,
 				2D14A57425750AB300D19B2A /* Sources */,
 				2D14A57525750AB300D19B2A /* Frameworks */,
 				2D14A57625750AB300D19B2A /* Resources */,
+				8D7FC5F4C189B316CCC6F738 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -194,6 +237,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D14A5A525750ABD00D19B2A /* Build configuration list for PBXNativeTarget "QuickAge2Tests" */;
 			buildPhases = (
+				1E2404E2F0045C58251D948C /* [CP] Check Pods Manifest.lock */,
 				2D14A58A25750ABD00D19B2A /* Sources */,
 				2D14A58B25750ABD00D19B2A /* Frameworks */,
 				2D14A58C25750ABD00D19B2A /* Resources */,
@@ -212,9 +256,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D14A5A825750ABD00D19B2A /* Build configuration list for PBXNativeTarget "QuickAge2UITests" */;
 			buildPhases = (
+				EC51D65BA49C3A28DD6885F2 /* [CP] Check Pods Manifest.lock */,
 				2D14A59525750ABD00D19B2A /* Sources */,
 				2D14A59625750ABD00D19B2A /* Frameworks */,
 				2D14A59725750ABD00D19B2A /* Resources */,
+				EA691D702361A4013486BE9F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -296,6 +342,109 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1E2404E2F0045C58251D948C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-QuickAge2Tests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		64D0EF8DC6B4160C1F0DD954 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-QuickAge2-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8D7FC5F4C189B316CCC6F738 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-QuickAge2/Pods-QuickAge2-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-QuickAge2/Pods-QuickAge2-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QuickAge2/Pods-QuickAge2-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EA691D702361A4013486BE9F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-QuickAge2-QuickAge2UITests/Pods-QuickAge2-QuickAge2UITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-QuickAge2-QuickAge2UITests/Pods-QuickAge2-QuickAge2UITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QuickAge2-QuickAge2UITests/Pods-QuickAge2-QuickAge2UITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EC51D65BA49C3A28DD6885F2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-QuickAge2-QuickAge2UITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2D14A57425750AB300D19B2A /* Sources */ = {
@@ -498,6 +647,7 @@
 		};
 		2D14A5A325750ABD00D19B2A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9B8F40EBD68F6017C6B55424 /* Pods-QuickAge2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -519,6 +669,7 @@
 		};
 		2D14A5A425750ABD00D19B2A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 094CF1D1E303850CCADB5065 /* Pods-QuickAge2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -540,6 +691,7 @@
 		};
 		2D14A5A625750ABD00D19B2A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30803BF9053417266665DFA4 /* Pods-QuickAge2Tests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -562,6 +714,7 @@
 		};
 		2D14A5A725750ABD00D19B2A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CCBC3DD1549C8FBC0C0FBDFC /* Pods-QuickAge2Tests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -584,6 +737,7 @@
 		};
 		2D14A5A925750ABD00D19B2A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B548B33CC8B3DF696CD7B381 /* Pods-QuickAge2-QuickAge2UITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -604,6 +758,7 @@
 		};
 		2D14A5AA25750ABD00D19B2A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FB4D8D6037C039B6BC625B52 /* Pods-QuickAge2-QuickAge2UITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

@@ -7,8 +7,9 @@
 
 import Foundation
 import UIKit
+import GoogleMobileAds
 
-class ViewController: UIViewController{
+class ViewController: UIViewController, GADInterstitialDelegate{
     
     //&&& set
     var viewWidth: CGFloat = 0
@@ -433,17 +434,25 @@ class ViewController: UIViewController{
     
     
     
+    // google Ads
+    var interstitial: GADInterstitial!
+
+    
+    
 
 
     // ViewDidLoad ---------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        interstitial = createAndLoadInterstitial()
+        
         let dt = Date()
         searchDay = dt.convertDateToStr(with: "yyyy/MM/dd")
         searchDate = dt
         baseDate = dt
         getBaseDayStringFromBaseDay(searchDate: baseDate)
+
         // 初期画面の画面レイアウト設定
         initViewSetting()
         // default date is today
@@ -459,6 +468,23 @@ class ViewController: UIViewController{
     }
     
     
+    
+    // google admob
+    func createAndLoadInterstitial() -> GADInterstitial {
+        self.interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910" )
+        // for release
+        //"ca-app-pub-6867924781518942/7855415462"
+        interstitial.delegate = self
+        let request = GADRequest()
+        interstitial.load(request)
+        return interstitial
+    }
+    
+    
+    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
+      interstitial = createAndLoadInterstitial()
+    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
