@@ -445,6 +445,9 @@ class ViewController: UIViewController, GADInterstitialDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // ad counter 
+        //AdCounter.shared.resetCounter()
+        
         interstitial = createAndLoadInterstitial()
         
         let dt = Date()

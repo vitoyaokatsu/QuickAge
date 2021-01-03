@@ -12,8 +12,6 @@ class UserDefaultSetting {
     
     enum Key: String {
         case backgroundColor = "backgroundColor"
-        
-        
     }
     
     enum SEKeys: String {
@@ -22,6 +20,9 @@ class UserDefaultSetting {
         case SE3 = "SE3"
     }
     
+    enum AdKey: String {
+        case counter = "ad_counter"
+    }
     
     private static let userDefault = UserDefaults.standard
     
@@ -39,3 +40,42 @@ class UserDefaultSetting {
     }
 }
 
+
+class AdCounter {
+    
+    static let shared = AdCounter()
+    
+    var counter = 0
+    
+    var maxCount = 5
+    
+    init() {
+        self.readCounter()
+    }
+    
+    func countUp() -> Bool{
+        
+        counter += 1
+        
+        if (counter >= maxCount){
+            resetCounter()
+            return true
+        }else {
+            setCounter()
+            return false
+        }
+    }
+    
+    private func resetCounter(){
+        self.counter = 0
+        self.setCounter()
+    }
+    
+    private func setCounter(){
+        UserDefaultSetting.saveData(key: UserDefaultSetting.AdKey.counter.rawValue, object: self.counter)
+    }
+    
+    private func readCounter(){
+        self.counter = UserDefaultSetting.getData(key: UserDefaultSetting.AdKey.counter.rawValue) as? Int ?? 0
+    }
+}

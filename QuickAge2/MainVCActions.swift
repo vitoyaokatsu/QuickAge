@@ -613,12 +613,16 @@ extension ViewController {
         
         calculateAge()
         
-        //show ads if it's ready
-        if interstitial.isReady {
-            interstitial.present(fromRootViewController: self)
-          } else {
-            print("Ad wasn't ready")
-          }
+        if AdCounter.shared.countUp() {
+            
+            //show ads if it's ready
+            if interstitial.isReady {
+                interstitial.present(fromRootViewController: self)
+            } else {
+                print("Ad wasn't ready")
+            }
+            
+        }
         
     }
 
